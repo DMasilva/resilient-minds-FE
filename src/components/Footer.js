@@ -10,6 +10,7 @@ import {
   FaMapMarkerAlt,
   FaHeart
 } from 'react-icons/fa';
+import logoIcon from '../images/icononly.png';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -21,10 +22,12 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About Section */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-gradient-to-br from-primary-500 to-secondary-600 rounded-lg flex items-center justify-center">
-                <span className="text-white font-bold">RM</span>
-              </div>
+            <div className="flex items-center space-x-3 mb-4">
+              <img 
+                src={logoIcon} 
+                alt="Resilient Minds Icon" 
+                className="w-10 h-10 object-contain"
+              />
               <h3 className="text-xl font-bold text-white">Resilient Minds</h3>
             </div>
             <p className="text-gray-400 mb-4">
@@ -84,9 +87,9 @@ const Footer = () => {
               <li>
                 <Link to="/services" className="hover:text-primary-400 transition">Services</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/careers" className="hover:text-primary-400 transition">Careers</Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/resources" className="hover:text-primary-400 transition">Resources</Link>
               </li>

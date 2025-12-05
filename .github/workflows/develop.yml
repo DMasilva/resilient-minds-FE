@@ -1,0 +1,142 @@
+# CI/CD Pipeline for Develop Branch (Staging)
+name: Develop Branch CI/CD
+
+on:
+  push:
+    branches:
+      - develop
+  pull_request:
+    branches:
+      - develop
+
+env:
+  NODE_VERSION: '18'
+
+jobs:
+  # Quality Checks
+  lint-and-test:
+    name: Lint & Test
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Run linter
+        run: npm run lint --if-present || echo "No lint script found"
+      
+      - name: Run tests
+        run: npm test -- --watchAll=false --passWithNoTests
+      
+      - name: Check for console.log statements
+        run: |
+          if grep -r "console\.log" src/ --include="*.js" --include="*.jsx"; then
+            echo "❌ Error: console.log statements found in source code"
+            exit 1
+          else
+            echo "✅ No console.log statements found"
+          fi
+
+  # Build verification
+  build-check:
+    name: Build Check
+    runs-on: ubuntu-latest
+    needs: lint-and-test
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build application
+        run: npm run build
+        env:
+          CI: false
+          REACT_APP_API_URL: ${{ secrets.STAGING_API_URL }}
+      
+      - name: Check build size
+        run: |
+          BUILD_SIZE=$(du -sh build | cut -f1)
+          echo "📦 Build size: $BUILD_SIZE"
+      
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-develop
+          path: build/
+          retention-days: 7
+
+  # Security checks
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate || true
+      
+      - name: Check for sensitive files
+        run: |
+          if [ -f ".env" ] || [ -f ".env.local" ] || [ -f ".env.production" ]; then
+            echo "❌ Error: .env files should not be committed"
+            exit 1
+          else
+            echo "✅ No .env files found in repository"
+          fi
+
+  # Deploy to Vercel (Staging)
+  deploy-staging:
+    name: Deploy to Staging
+    runs-on: ubuntu-latest
+    needs: [lint-and-test, build-check, security-scan]
+    if: github.event_name == 'push'
+    environment:
+      name: staging
+      url: ${{ steps.deploy.outputs.preview-url }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Deploy to Vercel
+        id: deploy
+        uses: amondnet/vercel-action@v25
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          vercel-args: '--env REACT_APP_API_URL=${{ secrets.STAGING_API_URL }}'
+          scope: ${{ secrets.VERCEL_ORG_ID }}
+      
+      - name: Comment PR with preview URL
+        if: github.event_name == 'pull_request'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '✅ Staging deployment ready!\n\n🔗 Preview: ${{ steps.deploy.outputs.preview-url }}'
+            })
+

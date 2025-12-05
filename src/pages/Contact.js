@@ -42,7 +42,6 @@ const Contact = () => {
       
       if (result.success) {
         setIsSubmitted(true);
-        console.log('Form submitted successfully:', result.data);
         
         // Reset form after 3 seconds
         setTimeout(() => {

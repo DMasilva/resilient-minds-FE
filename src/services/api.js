@@ -1,7 +1,7 @@
 // Centralized API Service for Resilient Minds
 // All API endpoints and communication logic in one place
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:3001/api/v1';
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:4000/api/v1';
 
 // API Routes Configuration
 export const API_ROUTES = {
@@ -30,16 +30,18 @@ const apiRequest = async (endpoint, options = {}) => {
     const data = await response.json();
 
     if (!response.ok) {
-      throw {
-        status: response.status,
-        message: data.error || 'Request failed',
-        errors: data.errors || []
-      };
+      const error = new Error(data.error || 'Request failed');
+      error.status = response.status;
+      error.errors = data.errors || [];
+      throw error;
     }
 
     return { success: true, data };
   } catch (error) {
-    console.error('API Error:', error);
+    // Log errors in development only
+    if (process.env.NODE_ENV === 'development') {
+      console.error('API Error:', error);
+    }
     return {
       success: false,
       error: error.message || 'Network error',

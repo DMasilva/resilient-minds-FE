@@ -13,154 +13,232 @@ A fully responsive, modern React website for Resilient Minds, a comprehensive me
   - Contact - Contact form with location information
   - Careers - Job listings with application process
   - Resources - Mental health resources, crisis hotlines, and support networks
+  - Admin Portal - Dashboard for managing submissions (at `/admin`)
+- **Backend Integration**: Connected to Rails API for managing form submissions
 - **Accessibility**: Crisis resources prominently displayed
 - **SEO Optimized**: Proper meta tags and semantic HTML
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
+- Node.js (v18 or higher)
 - npm or yarn
 
 ### Installation
 
-1. Clone the repository or ensure you're in the project directory
-
-2. Install dependencies:
 ```bash
+# Install dependencies
 npm install
-```
 
-This will install:
-- React and React DOM
-- React Router DOM (for navigation)
-- Tailwind CSS (for styling)
-- React Icons (for icon components)
-- All other required dependencies
-
-3. Start the development server:
-```bash
+# Start development server
 npm start
 ```
 
 The application will open at [http://localhost:3000](http://localhost:3000)
 
-## 📦 Build for Production
-
-To create an optimized production build:
+### Build for Production
 
 ```bash
 npm run build
 ```
 
-This creates a `build` folder with optimized files ready for deployment.
+This creates an optimized `build` folder ready for deployment.
+
+## 📦 Deployment
+
+This project is configured with a complete CI/CD pipeline:
+
+```
+develop → staging → main (production)
+```
+
+### Quick Deployment Guide
+
+1. **Read the Documentation**:
+   - 📖 [Deployment Quick Start](./DEPLOYMENT_QUICKSTART.md) - **START HERE**
+   - 📖 [Git Workflow](./GIT_WORKFLOW.md) - Detailed workflow guide
+   - 📖 [Production Checklist](./PRODUCTION_CHECKLIST.md) - Pre-deployment checklist
+
+2. **Set Up Branches**:
+   ```bash
+   git checkout -b develop
+   git push -u origin develop
+   
+   git checkout -b staging
+   git push -u origin staging
+   ```
+
+3. **Configure GitHub Secrets** (in repo settings):
+   - `VERCEL_TOKEN`
+   - `VERCEL_ORG_ID`
+   - `VERCEL_PROJECT_ID`
+   - `STAGING_API_URL`
+   - `PRODUCTION_API_URL`
+
+4. **Deploy**:
+   ```bash
+   # Run pre-deployment check
+   ./scripts/pre-deploy-check.sh
+   
+   # Create PR and merge: staging → main
+   # GitHub Actions will automatically deploy to production
+   ```
+
+## 🛠️ Technology Stack
+
+- **React 19.2.0** - UI library
+- **React Router DOM 7.9.6** - Client-side routing
+- **Tailwind CSS 3.4.18** - Utility-first CSS framework
+- **React Icons 5.5.0** - Icon library
+- **Axios** - HTTP client for API calls
+
+## 📂 Project Structure
+
+```
+resilient-minds-webpage/
+├── .github/
+│   ├── workflows/              # CI/CD pipelines
+│   │   ├── develop.yml
+│   │   ├── staging.yml
+│   │   └── production.yml
+│   └── PULL_REQUEST_TEMPLATE/ # PR templates
+├── public/
+│   ├── index.html
+│   ├── manifest.json          # PWA manifest (updated branding)
+│   └── robots.txt             # SEO configuration
+├── scripts/
+│   ├── pre-deploy-check.sh    # Pre-deployment verification
+│   └── post-deploy-verify.sh  # Post-deployment verification
+├── src/
+│   ├── components/
+│   │   ├── Header.js          # Navigation header
+│   │   └── Footer.js          # Footer with links
+│   ├── pages/
+│   │   ├── Home.js            # Homepage
+│   │   ├── About.js           # About page
+│   │   ├── Services.js        # Services page
+│   │   ├── Contact.js         # Contact page
+│   │   ├── Careers.js         # Careers page
+│   │   ├── Resources.js       # Resources page
+│   │   └── Admin.js           # Admin dashboard
+│   ├── services/
+│   │   └── api.js             # Centralized API service
+│   ├── App.js                 # Main app component
+│   └── index.js               # Entry point
+├── CHANGELOG.md               # Version history
+├── DEPLOYMENT_QUICKSTART.md   # Quick start guide
+├── GIT_WORKFLOW.md            # Git workflow guide
+├── PRODUCTION_CHECKLIST.md    # Pre-deployment checklist
+└── README.md                  # This file
+```
 
 ## 🎨 Customization
 
 ### Colors
 
-The color scheme can be customized in `tailwind.config.js`:
+Customize in `tailwind.config.js`:
 - **Primary**: Blue tones (main brand color)
 - **Secondary**: Purple tones (accent color)
 - **Accent**: Red tones (call-to-action and crisis alerts)
 
 ### Content
 
-Update content in the respective page files in `src/pages/`:
-- `Home.js` - Homepage content
-- `About.js` - Organization information
-- `Services.js` - Service descriptions
-- `Contact.js` - Contact information and form
-- `Careers.js` - Job listings and benefits
-- `Resources.js` - Mental health resources
+Update content in respective page files in `src/pages/`
 
-### Contact Information
+### API Configuration
 
-Update phone numbers, emails, and addresses in:
-- `src/components/Header.js`
-- `src/components/Footer.js`
-- `src/pages/Contact.js`
-
-## 📱 Mobile Responsiveness
-
-The website is fully responsive with breakpoints:
-- Mobile: < 640px
-- Tablet: 640px - 1024px
-- Desktop: > 1024px
-
-All components use Tailwind's responsive classes (`sm:`, `md:`, `lg:`, `xl:`) to ensure optimal display on all devices.
-
-## 🛠️ Technology Stack
-
-- **React 19.2.0** - UI library
-- **React Router DOM** - Client-side routing
-- **Tailwind CSS** - Utility-first CSS framework
-- **React Icons** - Icon library
-- **Google Fonts** - Inter and Poppins fonts
-
-## 📂 Project Structure
-
-```
-resilient-minds-webpage/
-├── public/
-│   ├── index.html
-│   └── ...
-├── src/
-│   ├── components/
-│   │   ├── Header.js       # Navigation header
-│   │   └── Footer.js       # Footer with links and info
-│   ├── pages/
-│   │   ├── Home.js         # Homepage
-│   │   ├── About.js        # About page
-│   │   ├── Services.js     # Services page
-│   │   ├── Contact.js      # Contact page
-│   │   ├── Careers.js      # Careers page
-│   │   └── Resources.js    # Resources page
-│   ├── App.js              # Main app component with routing
-│   ├── index.js            # Entry point
-│   └── index.css           # Global styles with Tailwind
-├── tailwind.config.js      # Tailwind configuration
-├── package.json            # Dependencies and scripts
-└── README.md               # This file
-```
-
-## 🚢 Deployment
-
-This website can be deployed to various platforms:
-
-### Vercel (Recommended)
+Set environment variables:
 ```bash
-npm install -g vercel
-vercel
+# Development
+REACT_APP_API_URL=http://localhost:4000/api/v1
+
+# Production
+REACT_APP_API_URL=https://your-api.com/api/v1
 ```
 
-### Netlify
-1. Connect your repository to Netlify
-2. Build command: `npm run build`
-3. Publish directory: `build`
+## 🔒 Security
 
-### GitHub Pages
+- Admin route (`/admin`) blocked in `robots.txt`
+- No console.log statements in production
+- Environment variables for sensitive data
+- CORS configuration in backend
+- Security scanning in CI/CD pipeline
+
+## 📝 Development Workflow
+
 ```bash
-npm install gh-pages --save-dev
-# Add to package.json scripts:
-# "predeploy": "npm run build"
-# "deploy": "gh-pages -d build"
-npm run deploy
+# 1. Create feature branch
+git checkout -b feature/my-feature
+
+# 2. Make changes and commit
+git add .
+git commit -m "feat: add new feature"
+
+# 3. Push and create PR
+git push origin feature/my-feature
+# Create PR on GitHub: feature → develop
+
+# 4. After approval, merge to develop
+# GitHub Actions will automatically test and deploy to dev environment
+
+# 5. When ready for staging
+# Create PR: develop → staging
+
+# 6. When ready for production
+# Run pre-deployment check
+./scripts/pre-deploy-check.sh
+
+# Create PR: staging → main (requires 2+ approvals)
 ```
 
-## 🔒 Environment Variables
+## 🧪 Testing
 
-For production, you may want to set up environment variables for:
-- Form submission endpoints
-- Analytics tracking IDs
-- API keys (if needed)
+```bash
+# Run tests
+npm test
 
-Create a `.env` file in the root directory:
+# Run tests with coverage
+npm test -- --coverage
+
+# Run linting
+npm run lint
 ```
-REACT_APP_API_URL=your_api_url
-REACT_APP_FORM_ENDPOINT=your_form_endpoint
-```
+
+## 📊 Scripts
+
+| Script | Description |
+|--------|-------------|
+| `npm start` | Start development server |
+| `npm run build` | Build for production |
+| `npm test` | Run tests |
+| `./scripts/pre-deploy-check.sh` | Pre-deployment verification |
+| `./scripts/post-deploy-verify.sh <url>` | Post-deployment verification |
+
+## 🚢 CI/CD Pipeline
+
+Three automated pipelines:
+
+1. **Develop** - Runs on every push to `develop`
+   - Linting, testing, building
+   - Deploys to development preview
+
+2. **Staging** - Runs on push to `staging`
+   - All develop checks + code coverage
+   - Deploys to staging environment
+
+3. **Production** - Runs on push to `main`
+   - Comprehensive security checks
+   - Deploys to production
+   - Creates deployment tags
+   - Post-deployment verification
+
+## 📞 Support
+
+For technical support or questions:
+- Check documentation in `docs/` folder
+- Review `GIT_WORKFLOW.md` for workflow questions
+- Check GitHub Actions logs for deployment issues
 
 ## 📝 License
 
@@ -168,17 +246,29 @@ This project is proprietary software for Resilient Minds.
 
 ## 🤝 Contributing
 
-For internal development, follow these guidelines:
-1. Create a feature branch
+1. Create a feature branch from `develop`
 2. Make your changes
 3. Test responsiveness on all device sizes
-4. Submit a pull request
+4. Submit a pull request to `develop`
 
-## 📞 Support
+## 📖 Documentation
 
-For technical support or questions about the website, contact the development team.
+### Essential Documentation
+- **[Changelog](./CHANGELOG.md)** - Version history and release notes
+
+### Setup & Deployment Guides (Internal)
+For detailed setup and deployment instructions, see the `md_files/` directory:
+- `md_files/tutorial_DEPLOYMENT_QUICKSTART.md` - Get started with deployment
+- `md_files/tutorial_GIT_WORKFLOW.md` - Complete workflow documentation
+- `md_files/tutorial_PRODUCTION_CHECKLIST.md` - Pre-deployment checklist
+- `md_files/tutorial_ENVIRONMENT_GUIDE.md` - Environment configuration
+- `md_files/tutorial_VERCEL_DEPLOYMENT_CHECKLIST.md` - Vercel-specific setup
+- `md_files/tutorial_DEPLOYMENT_GUIDE.md` - Complete deployment guide
+- `md_files/tutorial_ADMIN_PORTAL.md` - Admin portal documentation
 
 ---
 
 Built with ❤️ for mental health awareness
-# resilient-minds-FE
+
+**Version**: 1.0.0  
+**Last Updated**: December 5, 2025
