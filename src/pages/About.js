@@ -12,6 +12,7 @@ import {
 } from 'react-icons/fa';
 import peopleSeatedTogether from '../images/people_seated_together.png';
 import plantSprouting from '../images/plant_sprouting.png';
+import erikaYoney from '../images/erika.png';
 
 const About = () => {
   const values = [
@@ -37,32 +38,33 @@ const About = () => {
     }
   ];
 
-  const teamMembers = [
-    {
-      name: 'Clinical Director',
-      role: 'Leadership',
-      specialty: 'Licensed Psychologist, PhD',
-      description: '15+ years experience in adult mental health'
-    },
-    {
-      name: 'Lead Therapist',
-      role: 'Clinical Services',
-      specialty: 'Licensed Independent Clinical Social Worker',
-      description: 'Specializes in trauma-informed care'
-    },
-    {
-      name: 'Senior Counselor',
-      role: 'Counseling Services',
-      specialty: 'Licensed Professional Clinical Counselor',
-      description: 'Expert in anxiety and depression treatment'
-    },
-    {
-      name: 'Case Manager',
-      role: 'Client Support',
-      specialty: 'Master of Arts in Counseling',
-      description: 'Housing stabilization specialist'
-    }
-  ];
+  const clinicalSupervisor = {
+    name: 'Erika Yoney',
+    credentials: 'PMHNP-BC, DNP',
+    role: 'Clinical Supervisor',
+    image: erikaYoney,
+    education: [
+      'Doctor of Nursing Practice (DNP) - University of Minnesota, Twin Cities',
+      'Bachelor of Science in Nursing (BSN) - Minnesota State University Moorhead'
+    ],
+    philosophy: 'Committed to providing high quality, whole person mental health services to patients of all ages. Values patient directed, highly individualized care that honors the unique needs of each patient across their lifetime.',
+    specialties: [
+      'Children & Adolescent Mental Health',
+      'Parent Support & Family Systems',
+      'School-Based Mental Health',
+      'New American Community Mental Health',
+      'Prevention & Early Intervention',
+      'Whole Person Care Approach'
+    ],
+    certification: 'Board certified through the American Nurses Credentialing Center (ANCC)',
+    licensure: 'Licensed to practice in North Dakota and Minnesota',
+    memberships: [
+      'American Psychiatric Nurses Association',
+      'International Society for Psychiatric Nursing'
+    ],
+    background: 'Dr. Yoney brings extensive experience working as a nurse in school settings at both state and local levels. This background has shaped her commitment to providing meaningful access to mental health care in the places where people live, work, and play - not just in clinics. She is passionate about prevention and timely intervention for mental health needs, especially for children, teenagers, and parents who may be struggling.',
+    personalNote: 'Through professional and volunteer experiences, Dr. Yoney has had the privilege of supporting new to country individuals in navigating mental health needs, bringing cultural sensitivity and understanding to her practice.'
+  };
 
   const achievements = [
     'Accredited by the Joint Commission',
@@ -206,38 +208,167 @@ const About = () => {
         </div>
       </section>
 
-      {/* Team Section */}
+      {/* Clinical Leadership Section */}
       <section className="section-padding bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Meet Our Leadership Team
+              Clinical Leadership
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Experienced professionals dedicated to your mental health journey
+              Expert guidance and compassionate care from our dedicated Clinical Supervisor
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <div key={index} className="card text-center">
-                <div className="w-24 h-24 bg-gradient-to-br from-primary-400 to-secondary-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <FaUsers className="text-4xl text-white" />
+          {/* Featured Clinical Supervisor Profile */}
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+              <div className="grid lg:grid-cols-5 gap-8">
+                {/* Image Section */}
+                <div className="lg:col-span-2 bg-gradient-to-br from-primary-500 to-secondary-600 p-8 flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="mb-6">
+                      <img 
+                        src={clinicalSupervisor.image} 
+                        alt={clinicalSupervisor.name}
+                        className="w-64 h-64 object-cover rounded-full mx-auto border-8 border-white shadow-2xl"
+                      />
+                    </div>
+                    <h3 className="text-3xl font-bold text-white mb-2">
+                      {clinicalSupervisor.name}
+                    </h3>
+                    <p className="text-xl text-primary-100 font-semibold mb-2">
+                      {clinicalSupervisor.credentials}
+                    </p>
+                    <p className="text-lg text-white font-medium px-6 py-2 bg-white/20 rounded-full inline-block">
+                      {clinicalSupervisor.role}
+                    </p>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-1">
-                  {member.name}
-                </h3>
-                <p className="text-primary-600 font-medium mb-2">
-                  {member.role}
-                </p>
-                <p className="text-sm text-gray-600 mb-2">
-                  {member.specialty}
-                </p>
-                <p className="text-sm text-gray-500">
-                  {member.description}
-                </p>
+
+                {/* Content Section */}
+                <div className="lg:col-span-3 p-8 lg:p-12">
+                  {/* Philosophy */}
+                  <div className="mb-8">
+                    <div className="flex items-center gap-3 mb-4">
+                      <FaHeart className="text-3xl text-primary-600" />
+                      <h4 className="text-2xl font-bold text-gray-900">Care Philosophy</h4>
+                    </div>
+                    <p className="text-gray-700 text-lg leading-relaxed italic border-l-4 border-primary-600 pl-6 py-2 bg-primary-50 rounded-r-lg">
+                      "{clinicalSupervisor.philosophy}"
+                    </p>
+                  </div>
+
+                  {/* Education */}
+                  <div className="mb-8">
+                    <div className="flex items-center gap-3 mb-4">
+                      <FaAward className="text-3xl text-secondary-600" />
+                      <h4 className="text-2xl font-bold text-gray-900">Education</h4>
+                    </div>
+                    <ul className="space-y-3">
+                      {clinicalSupervisor.education.map((edu, index) => (
+                        <li key={index} className="flex items-start">
+                          <FaCheckCircle className="text-green-500 mt-1 mr-3 flex-shrink-0" />
+                          <span className="text-gray-700">{edu}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+
+                  {/* Credentials */}
+                  <div className="mb-8">
+                    <div className="flex items-center gap-3 mb-4">
+                      <FaAward className="text-3xl text-accent-600" />
+                      <h4 className="text-2xl font-bold text-gray-900">Credentials & Licensure</h4>
+                    </div>
+                    <div className="space-y-2">
+                      <p className="text-gray-700 flex items-start">
+                        <FaCheckCircle className="text-blue-500 mt-1 mr-3 flex-shrink-0" />
+                        {clinicalSupervisor.certification}
+                      </p>
+                      <p className="text-gray-700 flex items-start">
+                        <FaCheckCircle className="text-blue-500 mt-1 mr-3 flex-shrink-0" />
+                        {clinicalSupervisor.licensure}
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Professional Memberships */}
+                  <div className="mb-8">
+                    <div className="flex items-center gap-3 mb-4">
+                      <FaUsers className="text-3xl text-primary-600" />
+                      <h4 className="text-2xl font-bold text-gray-900">Professional Memberships</h4>
+                    </div>
+                    <ul className="space-y-2">
+                      {clinicalSupervisor.memberships.map((membership, index) => (
+                        <li key={index} className="flex items-start">
+                          <FaCheckCircle className="text-purple-500 mt-1 mr-3 flex-shrink-0" />
+                          <span className="text-gray-700">{membership}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
               </div>
-            ))}
+
+              {/* Full-width sections at bottom */}
+              <div className="bg-gradient-to-r from-primary-50 to-secondary-50 border-t border-gray-200">
+                <div className="p-8 lg:p-12">
+                  {/* Clinical Specialties */}
+                  <div className="mb-8">
+                    <div className="flex items-center gap-3 mb-6">
+                      <FaLightbulb className="text-3xl text-primary-600" />
+                      <h4 className="text-2xl font-bold text-gray-900">Clinical Specialties & Interests</h4>
+                    </div>
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {clinicalSupervisor.specialties.map((specialty, index) => (
+                        <div key={index} className="bg-white rounded-lg px-4 py-3 shadow-md border-l-4 border-primary-600 hover:shadow-lg transition">
+                          <p className="text-gray-800 font-medium">{specialty}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Background & Experience */}
+                  <div className="mb-6">
+                    <div className="flex items-center gap-3 mb-4">
+                      <FaBullseye className="text-3xl text-secondary-600" />
+                      <h4 className="text-2xl font-bold text-gray-900">Background & Experience</h4>
+                    </div>
+                    <p className="text-gray-700 text-lg leading-relaxed mb-4">
+                      {clinicalSupervisor.background}
+                    </p>
+                    <p className="text-gray-700 text-lg leading-relaxed">
+                      {clinicalSupervisor.personalNote}
+                    </p>
+                  </div>
+
+                  {/* Approach Highlights */}
+                  <div className="bg-white rounded-xl p-6 shadow-md border-2 border-primary-200">
+                    <h5 className="text-xl font-bold text-gray-900 mb-4">Dr. Yoney's Approach:</h5>
+                    <p className="text-gray-700 leading-relaxed">
+                      Mental health is completely connected to our physical, social, and spiritual well-being. 
+                      Dr. Yoney incorporates all these aspects into patient care, ensuring a holistic, 
+                      comprehensive approach that addresses the whole person - not just symptoms. Her practice 
+                      emphasizes meeting people where they are, whether in schools, communities, or clinical settings, 
+                      making quality mental health care truly accessible.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Additional Team Members - Optional Section */}
+          <div className="mt-16 text-center">
+            <p className="text-lg text-gray-600 mb-4">
+              In addition to Dr. Yoney, our team includes dedicated mental health professionals, 
+              case managers, and support staff committed to your wellbeing.
+            </p>
+            <div className="inline-flex items-center gap-2 text-primary-600 font-semibold">
+              <FaUsers className="text-2xl" />
+              <span className="text-xl">20+ Mental Health Professionals on Our Team</span>
+            </div>
           </div>
         </div>
       </section>
