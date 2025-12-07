@@ -19,6 +19,7 @@ import {
   FaClipboardList,
   FaLightbulb
 } from 'react-icons/fa';
+import { ImageWithLoader } from '../components/LoadingSpinner';
 import wellLitHouse from '../images/well_lit_house.png';
 import twoPeopleWalking from '../images/two_people_walking.png';
 import plantSprouting from '../images/plant_sprouting.png';
@@ -148,7 +149,7 @@ const Services = () => {
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img 
+          <ImageWithLoader
             src={peopleSeatedTogether} 
             alt="Mental health services" 
             className="w-full h-full object-cover"
@@ -225,28 +226,28 @@ const Services = () => {
                   <div className={`order-2 ${index % 2 === 1 ? 'lg:order-1' : 'lg:order-2'}`}>
                     <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
                       {index === 0 && (
-                        <img 
+                        <ImageWithLoader
                           src={twoPeopleWalking} 
                           alt="ARMHS - Support and guidance" 
                           className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       )}
                       {index === 1 && (
-                        <img 
+                        <ImageWithLoader
                           src={wellLitHouse} 
                           alt="Housing Stabilization - Safe and stable home" 
                           className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       )}
                       {index === 2 && (
-                        <img 
+                        <ImageWithLoader
                           src={plantSprouting} 
                           alt="Therapy - Growth and healing" 
                           className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       )}
                       {index === 3 && (
-                        <img 
+                        <ImageWithLoader
                           src={peopleSeatedTogether} 
                           alt="Crisis Intervention - Immediate support" 
                           className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
@@ -441,7 +442,7 @@ const Services = () => {
       <section className="relative section-padding overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img 
+          <ImageWithLoader
             src={twoPeopleWalking} 
             alt="Accessible mental health care" 
             className="w-full h-full object-cover"
@@ -548,7 +549,7 @@ const Services = () => {
 
               {/* Image */}
               <div className="relative h-full min-h-[400px] lg:min-h-0 hidden lg:block">
-                <img 
+                <ImageWithLoader
                   src={peopleSeatedTogether} 
                   alt="Start your journey" 
                   className="absolute inset-0 w-full h-full object-cover"

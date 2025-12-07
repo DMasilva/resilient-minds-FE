@@ -10,6 +10,7 @@ import {
   FaLightbulb,
   FaCheckCircle
 } from 'react-icons/fa';
+import { ImageWithLoader } from '../components/LoadingSpinner';
 import peopleSeatedTogether from '../images/people_seated_together.png';
 import plantSprouting from '../images/plant_sprouting.png';
 import erikaYoney from '../images/erika.png';
@@ -83,7 +84,7 @@ const About = () => {
       <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img 
+          <ImageWithLoader
             src={wellLitHouse} 
             alt="Welcoming environment" 
             className="w-full h-full object-cover"
@@ -115,7 +116,7 @@ const About = () => {
             {/* Image Side */}
             <div className="order-2 lg:order-1">
               <div className="relative">
-                <img 
+                <ImageWithLoader
                   src={peopleSeatedTogether} 
                   alt="Supportive care environment" 
                   className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
@@ -127,7 +128,7 @@ const About = () => {
                       <div className="text-4xl font-bold text-primary-600 mb-1">2019</div>
                       <p className="text-sm text-gray-600 font-medium">Founded</p>
                     </div>
-                    <div>
+            <div>
                       <div className="text-4xl font-bold text-secondary-600 mb-1">500+</div>
                       <p className="text-sm text-gray-600 font-medium">Lives Changed</p>
                     </div>
@@ -169,7 +170,7 @@ const About = () => {
                 <div className="bg-primary-50 rounded-xl p-4 border-l-4 border-primary-600">
                   <div className="text-3xl font-bold text-primary-600 mb-1">7</div>
                   <p className="text-sm text-gray-600 font-medium">Counties Served</p>
-                </div>
+            </div>
                 <div className="bg-secondary-50 rounded-xl p-4 border-l-4 border-secondary-600">
                   <div className="text-3xl font-bold text-secondary-600 mb-1">20+</div>
                   <p className="text-sm text-gray-600 font-medium">Professionals</p>
@@ -215,11 +216,11 @@ const About = () => {
                 </div>
                 <h3 className="text-3xl font-bold mb-4">Our Mission</h3>
                 <p className="text-lg leading-relaxed text-primary-100 flex-grow">
-                  To provide competent, compassionate, and effective mental health rehabilitation 
-                  programs that empower adults to achieve mental wellness, independence, and success 
-                  in their personal and professional lives.
-                </p>
-              </div>
+                To provide competent, compassionate, and effective mental health rehabilitation 
+                programs that empower adults to achieve mental wellness, independence, and success 
+                in their personal and professional lives.
+              </p>
+            </div>
             </div>
 
             {/* Vision Card */}
@@ -241,10 +242,10 @@ const About = () => {
                 </div>
                 <h3 className="text-3xl font-bold mb-4">Our Vision</h3>
                 <p className="text-lg leading-relaxed text-secondary-100 flex-grow">
-                  To be the leading mental health center in Minnesota, recognized for promoting 
-                  peaceful, independent living for those with mental and behavioral conditions, 
-                  unlocking their full potential for success and wellbeing.
-                </p>
+                To be the leading mental health center in Minnesota, recognized for promoting 
+                peaceful, independent living for those with mental and behavioral conditions, 
+                unlocking their full potential for success and wellbeing.
+              </p>
               </div>
             </div>
           </div>
@@ -271,14 +272,14 @@ const About = () => {
               <div key={index} className="group">
                 <div className="bg-gradient-to-br from-gray-50 to-primary-50 rounded-2xl p-8 h-full hover:shadow-2xl transition-all duration-300 border border-gray-200 hover:border-primary-300">
                   <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-500 to-secondary-600 text-white rounded-2xl mb-6 group-hover:scale-110 transition-transform shadow-lg">
-                    {value.icon}
-                  </div>
+                  {value.icon}
+                </div>
                   <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                    {value.title}
-                  </h3>
+                  {value.title}
+                </h3>
                   <p className="text-gray-600 leading-relaxed">
-                    {value.description}
-                  </p>
+                  {value.description}
+                </p>
                 </div>
               </div>
             ))}
@@ -402,8 +403,8 @@ const About = () => {
                       {clinicalSupervisor.specialties.map((specialty, index) => (
                         <div key={index} className="bg-white rounded-lg px-4 py-3 shadow-md border-l-4 border-primary-600 hover:shadow-lg transition">
                           <p className="text-gray-800 font-medium">{specialty}</p>
-                        </div>
-                      ))}
+              </div>
+            ))}
                     </div>
                   </div>
 

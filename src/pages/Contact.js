@@ -15,6 +15,7 @@ import {
   FaPaperPlane,
   FaQuestionCircle
 } from 'react-icons/fa';
+import { ImageWithLoader } from '../components/LoadingSpinner';
 import api from '../services/api';
 import wellLitHouse from '../images/well_lit_house.png';
 import peopleSeatedTogether from '../images/people_seated_together.png';
@@ -127,7 +128,7 @@ const Contact = () => {
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img 
+          <ImageWithLoader
             src={wellLitHouse} 
             alt="Contact Resilient Minds" 
             className="w-full h-full object-cover"
@@ -260,7 +261,7 @@ const Contact = () => {
           <div className="relative rounded-3xl overflow-hidden shadow-2xl">
             {/* Background Image */}
             <div className="absolute inset-0">
-              <img 
+              <ImageWithLoader
                 src={twoPeopleWalking} 
                 alt="Take the first step" 
                 className="w-full h-full object-cover"
@@ -315,7 +316,7 @@ const Contact = () => {
             {/* Image */}
             <div className="order-2 lg:order-1">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img 
+                <ImageWithLoader
                   src={peopleSeatedTogether} 
                   alt="Our welcoming office" 
                   className="w-full h-[500px] object-cover"

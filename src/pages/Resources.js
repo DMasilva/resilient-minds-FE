@@ -18,6 +18,7 @@ import {
   FaArrowRight,
   FaShieldAlt
 } from 'react-icons/fa';
+import { ImageWithLoader } from '../components/LoadingSpinner';
 import peopleSeatedTogether from '../images/people_seated_together.png';
 import wellLitHouse from '../images/well_lit_house.png';
 import twoPeopleWalking from '../images/two_people_walking.png';
@@ -168,7 +169,7 @@ const Resources = () => {
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img 
+          <ImageWithLoader
             src={twoPeopleWalking} 
             alt="Support and resources" 
             className="w-full h-full object-cover"
@@ -380,7 +381,7 @@ const Resources = () => {
             {/* Image Side */}
             <div className="order-2 lg:order-1">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img 
+                <ImageWithLoader
                   src={wellLitHouse} 
                   alt="Local Minnesota community" 
                   className="w-full h-[500px] object-cover"
@@ -618,7 +619,7 @@ const Resources = () => {
       <section className="relative section-padding overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img 
+          <ImageWithLoader
             src={peopleSeatedTogether} 
             alt="Professional mental health support" 
             className="w-full h-full object-cover"

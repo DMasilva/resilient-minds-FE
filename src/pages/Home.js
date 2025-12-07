@@ -19,6 +19,7 @@ import {
   FaUserMd,
   FaMapMarkerAlt
 } from 'react-icons/fa';
+import { ImageWithLoader } from '../components/LoadingSpinner';
 import twoPeopleWalking from '../images/two_people_walking.png';
 import plantSprouting from '../images/plant_sprouting.png';
 import peopleSeatedTogether from '../images/people_seated_together.png';
@@ -153,7 +154,7 @@ const Home = () => {
               <div className="relative">
                 {/* Main Image */}
                 <div className="relative z-10">
-                  <img 
+                  <ImageWithLoader
                     src={peopleSeatedTogether} 
                     alt="Supportive therapy environment" 
                     className="rounded-2xl shadow-2xl w-full object-cover"
@@ -193,7 +194,7 @@ const Home = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Image Side */}
             <div className="relative order-2 lg:order-1">
-              <img 
+              <ImageWithLoader
                 src={wellLitHouse} 
                 alt="Peaceful and supportive environment" 
                 className="rounded-2xl shadow-2xl w-full h-96 object-cover"
@@ -338,7 +339,7 @@ const Home = () => {
             <div className="grid lg:grid-cols-2 gap-0">
               {/* Image Side */}
               <div className="relative h-full min-h-[500px] lg:min-h-0">
-                <img 
+                <ImageWithLoader
                   src={erikaYoney} 
                   alt="Dr. Erika Yoney - Clinical Supervisor" 
                   className="absolute inset-0 w-full h-full object-cover object-center"
@@ -574,7 +575,7 @@ const Home = () => {
 
               {/* Image/Visual */}
               <div className="relative h-full min-h-[400px] lg:min-h-0 hidden lg:block">
-                <img 
+                <ImageWithLoader
                   src={twoPeopleWalking} 
                   alt="Moving forward together" 
                   className="absolute inset-0 w-full h-full object-cover"
