@@ -13,6 +13,8 @@ import {
 import peopleSeatedTogether from '../images/people_seated_together.png';
 import plantSprouting from '../images/plant_sprouting.png';
 import erikaYoney from '../images/erika.png';
+import wellLitHouse from '../images/well_lit_house.png';
+import twoPeopleWalking from '../images/two_people_walking.png';
 
 const About = () => {
   const values = [
@@ -78,14 +80,30 @@ const About = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="gradient-bg text-white section-padding py-20">
-        <div className="container-custom text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
+      <section className="relative min-h-[60vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src={wellLitHouse} 
+            alt="Welcoming environment" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-900/95 to-secondary-900/90"></div>
+        </div>
+
+        {/* Content */}
+        <div className="container-custom relative z-10 text-white text-center section-padding py-20">
+          <div className="inline-block mb-6">
+            <span className="bg-white/20 backdrop-blur-sm px-6 py-3 rounded-full text-sm font-semibold uppercase tracking-wider">
+              Our Story
+            </span>
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 leading-tight">
             About Resilient Minds
           </h1>
-          <p className="text-xl md:text-2xl max-w-3xl mx-auto text-primary-100">
+          <p className="text-xl md:text-2xl max-w-4xl mx-auto text-primary-100 leading-relaxed">
             Empowering individuals to overcome mental health challenges and achieve 
-            lasting wellness through compassionate, evidence-based care.
+            lasting wellness through compassionate, evidence-based care since 2019.
           </p>
         </div>
       </section>
@@ -93,58 +111,68 @@ const About = () => {
       {/* Our Story Section */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Image Side */}
+            <div className="order-2 lg:order-1">
+              <div className="relative">
+                <img 
+                  src={peopleSeatedTogether} 
+                  alt="Supportive care environment" 
+                  className="w-full h-[500px] object-cover rounded-2xl shadow-2xl"
+                />
+                {/* Stats Overlay */}
+                <div className="absolute -bottom-8 -right-8 bg-white rounded-2xl shadow-2xl p-8 max-w-xs">
+                  <div className="grid grid-cols-2 gap-6">
+                    <div>
+                      <div className="text-4xl font-bold text-primary-600 mb-1">2019</div>
+                      <p className="text-sm text-gray-600 font-medium">Founded</p>
+                    </div>
+                    <div>
+                      <div className="text-4xl font-bold text-secondary-600 mb-1">500+</div>
+                      <p className="text-sm text-gray-600 font-medium">Lives Changed</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Content Side */}
+            <div className="order-1 lg:order-2">
+              <div className="inline-block mb-4">
+                <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">Who We Are</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Our Story
               </h2>
-              <div className="space-y-4 text-gray-700 text-lg leading-relaxed">
+              <div className="space-y-6 text-gray-700 text-lg leading-relaxed">
                 <p>
-                  Resilient Minds was established in 2019 with a clear mission: to provide 
+                  Resilient Minds was established in <strong className="text-primary-600">2019</strong> with a clear mission: to provide 
                   comprehensive, accessible mental health services to adults in our community. 
                   Founded by a team of dedicated mental health professionals, we recognized the 
                   growing need for quality mental health care that treats the whole person.
                 </p>
                 <p>
-                  Based in Moorhead, Minnesota, we've grown from a small clinic to a comprehensive 
+                  Based in <strong className="text-primary-600">Moorhead, Minnesota</strong>, we've grown from a small clinic to a comprehensive 
                   mental health center serving Northwestern Minnesota and the Twin Cities Metro Area. 
                   Our expansion reflects our commitment to making mental health services accessible 
                   to more people who need them.
                 </p>
                 <p>
-                  Today, we're proud to serve hundreds of individuals each year, helping them 
+                  Today, we're proud to serve <strong className="text-primary-600">hundreds of individuals each year</strong>, helping them 
                   overcome challenges, build resilience, and create meaningful, independent lives. 
                   Every success story motivates us to continue our mission with renewed dedication.
                 </p>
               </div>
-            </div>
-            <div className="relative">
-              <div className="bg-gradient-to-br from-primary-100 to-secondary-100 rounded-2xl p-8 lg:p-12">
-                <img 
-                  src={peopleSeatedTogether} 
-                  alt="People seated together in supportive environment" 
-                  className="w-full h-64 object-cover rounded-xl mb-6 shadow-lg"
-                />
-                <div className="bg-white rounded-xl shadow-xl p-8 space-y-6">
-                  <div>
-                    <div className="text-4xl font-bold text-primary-600 mb-2">2019</div>
-                    <p className="text-gray-700">Year Founded</p>
-                  </div>
-                  <div className="h-px bg-gray-200"></div>
-                  <div>
-                    <div className="text-4xl font-bold text-primary-600 mb-2">500+</div>
-                    <p className="text-gray-700">Lives Changed Annually</p>
-                  </div>
-                  <div className="h-px bg-gray-200"></div>
-                  <div>
-                    <div className="text-4xl font-bold text-primary-600 mb-2">7</div>
-                    <p className="text-gray-700">Counties Served</p>
-                  </div>
-                  <div className="h-px bg-gray-200"></div>
-                  <div>
-                    <div className="text-4xl font-bold text-primary-600 mb-2">20+</div>
-                    <p className="text-gray-700">Mental Health Professionals</p>
-                  </div>
+
+              {/* Quick Stats */}
+              <div className="grid grid-cols-2 gap-4 mt-8">
+                <div className="bg-primary-50 rounded-xl p-4 border-l-4 border-primary-600">
+                  <div className="text-3xl font-bold text-primary-600 mb-1">7</div>
+                  <p className="text-sm text-gray-600 font-medium">Counties Served</p>
+                </div>
+                <div className="bg-secondary-50 rounded-xl p-4 border-l-4 border-secondary-600">
+                  <div className="text-3xl font-bold text-secondary-600 mb-1">20+</div>
+                  <p className="text-sm text-gray-600 font-medium">Professionals</p>
                 </div>
               </div>
             </div>
@@ -153,26 +181,71 @@ const About = () => {
       </section>
 
       {/* Mission & Vision Section */}
-      <section className="section-padding bg-gray-50">
+      <section className="section-padding bg-gradient-to-br from-gray-50 to-primary-50">
         <div className="container-custom">
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="card bg-gradient-to-br from-primary-600 to-primary-700 text-white">
-              <FaBullseye className="text-5xl mb-6 text-primary-200" />
-              <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
-              <p className="text-lg leading-relaxed text-primary-50">
-                To provide competent, compassionate, and effective mental health rehabilitation 
-                programs that empower adults to achieve mental wellness, independence, and success 
-                in their personal and professional lives.
-              </p>
+          <div className="text-center mb-16">
+            <div className="inline-block mb-4">
+              <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">What Drives Us</span>
             </div>
-            <div className="card bg-gradient-to-br from-secondary-600 to-secondary-700 text-white">
-              <FaEye className="text-5xl mb-6 text-secondary-200" />
-              <h3 className="text-2xl font-bold mb-4">Our Vision</h3>
-              <p className="text-lg leading-relaxed text-secondary-50">
-                To be the leading mental health center in Minnesota, recognized for promoting 
-                peaceful, independent living for those with mental and behavioral conditions, 
-                unlocking their full potential for success and wellbeing.
-              </p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Mission & Vision
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Our commitment to transforming mental health care in Minnesota
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-8">
+            {/* Mission Card */}
+            <div className="relative">
+              {/* Background Image */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                <img 
+                  src={twoPeopleWalking} 
+                  alt="Moving forward together" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-900/95 to-primary-700/95"></div>
+              </div>
+              
+              {/* Content */}
+              <div className="relative z-10 p-10 lg:p-12 text-white min-h-[400px] flex flex-col">
+                <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+                  <FaBullseye className="text-5xl" />
+                </div>
+                <h3 className="text-3xl font-bold mb-4">Our Mission</h3>
+                <p className="text-lg leading-relaxed text-primary-100 flex-grow">
+                  To provide competent, compassionate, and effective mental health rehabilitation 
+                  programs that empower adults to achieve mental wellness, independence, and success 
+                  in their personal and professional lives.
+                </p>
+              </div>
+            </div>
+
+            {/* Vision Card */}
+            <div className="relative">
+              {/* Background Image */}
+              <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                <img 
+                  src={plantSprouting} 
+                  alt="Growth and potential" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-br from-secondary-900/95 to-secondary-700/95"></div>
+              </div>
+              
+              {/* Content */}
+              <div className="relative z-10 p-10 lg:p-12 text-white min-h-[400px] flex flex-col">
+                <div className="w-20 h-20 bg-white/20 rounded-2xl flex items-center justify-center mb-6">
+                  <FaEye className="text-5xl" />
+                </div>
+                <h3 className="text-3xl font-bold mb-4">Our Vision</h3>
+                <p className="text-lg leading-relaxed text-secondary-100 flex-grow">
+                  To be the leading mental health center in Minnesota, recognized for promoting 
+                  peaceful, independent living for those with mental and behavioral conditions, 
+                  unlocking their full potential for success and wellbeing.
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -181,27 +254,32 @@ const About = () => {
       {/* Values Section */}
       <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <div className="text-center mb-16">
+            <div className="inline-block mb-4">
+              <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">What We Believe</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
               Our Core Values
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
               These principles guide everything we do and shape the care we provide
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((value, index) => (
-              <div key={index} className="text-center group">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-primary-100 text-primary-600 rounded-2xl mb-4 group-hover:bg-primary-600 group-hover:text-white transition-all duration-300 group-hover:scale-110">
-                  {value.icon}
+              <div key={index} className="group">
+                <div className="bg-gradient-to-br from-gray-50 to-primary-50 rounded-2xl p-8 h-full hover:shadow-2xl transition-all duration-300 border border-gray-200 hover:border-primary-300">
+                  <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-500 to-secondary-600 text-white rounded-2xl mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                    {value.icon}
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                    {value.title}
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    {value.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
-                  {value.title}
-                </h3>
-                <p className="text-gray-600">
-                  {value.description}
-                </p>
               </div>
             ))}
           </div>
@@ -374,46 +452,97 @@ const About = () => {
       </section>
 
       {/* Achievements Section */}
-      <section className="section-padding bg-white">
+      <section className="section-padding bg-gradient-to-br from-white to-gray-50">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Content Side */}
+            <div>
+              <div className="inline-block mb-4">
+                <span className="text-primary-600 font-semibold text-sm uppercase tracking-wider">Recognition & Excellence</span>
+              </div>
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
                 Our Achievements
               </h2>
-              <p className="text-lg text-gray-600">
-                Recognized for excellence in mental health care
+              <p className="text-xl text-gray-600 mb-8">
+                Recognized for excellence in mental health care and commitment to our community
               </p>
+
+              <div className="grid gap-6">
+                {achievements.map((achievement, index) => (
+                  <div key={index} className="flex items-start bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition border-l-4 border-primary-600">
+                    <FaCheckCircle className="text-green-500 text-2xl mr-4 flex-shrink-0 mt-1" />
+                    <span className="text-lg text-gray-700 font-medium">{achievement}</span>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              {achievements.map((achievement, index) => (
-                <div key={index} className="flex items-start bg-primary-50 rounded-xl p-6">
-                  <FaCheckCircle className="text-green-500 text-2xl mr-4 flex-shrink-0 mt-1" />
-                  <span className="text-lg text-gray-700">{achievement}</span>
+            {/* Image Side */}
+            <div className="relative">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src={wellLitHouse} 
+                  alt="Welcoming facility" 
+                  className="w-full h-[600px] object-cover"
+                />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-primary-900/80 via-primary-900/40 to-transparent"></div>
+                
+                {/* Stats Overlay */}
+                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                  <h3 className="text-3xl font-bold mb-6">Excellence in Care</h3>
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+                      <div className="text-4xl font-bold mb-2">95%</div>
+                      <div className="text-sm text-gray-200">Client Satisfaction</div>
+                    </div>
+                    <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
+                      <div className="text-4xl font-bold mb-2">100%</div>
+                      <div className="text-sm text-gray-200">Committed to You</div>
+                    </div>
+                  </div>
                 </div>
-              ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="section-padding gradient-bg text-white">
-        <div className="container-custom text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6">
-            Join Our Team or Become a Client
+      <section className="relative section-padding overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img 
+            src={peopleSeatedTogether} 
+            alt="Join our community" 
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary-900/95 via-primary-800/90 to-secondary-900/95"></div>
+        </div>
+
+        {/* Content */}
+        <div className="container-custom relative z-10 text-white text-center">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+            Ready to Take the Next Step?
           </h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto text-primary-100">
-            Whether you're seeking mental health support or looking to make a difference 
-            in people's lives, we'd love to hear from you.
+          <p className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto text-primary-100">
+            Whether you're seeking mental health support or looking to join our team 
+            of dedicated professionals, we'd love to hear from you.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link to="/contact" className="btn-primary bg-white text-primary-700 hover:bg-gray-100">
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Link 
+              to="/contact" 
+              className="group bg-white text-primary-700 px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-50 transition shadow-2xl inline-flex items-center justify-center gap-3"
+            >
               Schedule Appointment
+              <FaCheckCircle className="text-2xl group-hover:scale-110 transition-transform" />
             </Link>
-            <Link to="/careers" className="btn-secondary border-white text-white hover:bg-white hover:text-primary-700">
-              View Career Opportunities
+            <Link 
+              to="/careers" 
+              className="bg-primary-700 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-600 transition border-2 border-white/30 inline-flex items-center justify-center gap-3"
+            >
+              View Careers
+              <FaUsers className="text-2xl" />
             </Link>
           </div>
         </div>
