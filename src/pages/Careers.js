@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   FaBriefcase, 
@@ -7,41 +7,143 @@ import {
   FaGraduationCap,
   FaDollarSign,
   FaCalendarAlt,
-  FaAward,
   FaHandshake,
   FaArrowRight,
-  FaCheckCircle
+  FaCheckCircle,
+  FaMapMarkerAlt,
+  FaAngleDown,
+  FaAngleUp
 } from 'react-icons/fa';
+
+const JobCard = ({ position }) => {
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  return (
+    <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 overflow-hidden border border-gray-100">
+      {/* Card Header */}
+      <div className="p-6 border-b border-gray-100">
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
+          <div className="flex-1">
+            <h3 className="text-2xl font-bold text-gray-900 mb-3">
+              {position.title}
+            </h3>
+            
+            {/* Badges */}
+            <div className="flex flex-wrap gap-2">
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-blue-50 text-blue-700 rounded-lg text-sm font-medium">
+                <FaBriefcase className="text-xs" />
+                {position.type}
+              </span>
+              <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-purple-50 text-purple-700 rounded-lg text-sm font-medium">
+                <FaMapMarkerAlt className="text-xs" />
+                {position.location}
+              </span>
+              {position.schedule && (
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-amber-50 text-amber-700 rounded-lg text-sm font-medium">
+                  <FaCalendarAlt className="text-xs" />
+                  {position.schedule}
+                </span>
+              )}
+              {position.salary && (
+                <span className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-green-50 text-green-700 rounded-lg text-sm font-medium">
+                  <FaDollarSign className="text-xs" />
+                  {position.salary}
+                </span>
+              )}
+            </div>
+          </div>
+          
+          {/* Apply Button */}
+          <Link 
+            to="/contact" 
+            className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-6 py-3 rounded-lg font-semibold hover:from-primary-700 hover:to-secondary-700 transition-all shadow-sm hover:shadow-md whitespace-nowrap"
+          >
+            Apply Now
+            <FaArrowRight className="text-sm" />
+          </Link>
+        </div>
+      </div>
+
+      {/* Expandable Content */}
+      <div className="p-6">
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="w-full flex items-center justify-between text-left group mb-4"
+        >
+          <span className="text-lg font-semibold text-gray-700 group-hover:text-primary-600 transition-colors">
+            {isExpanded ? 'Hide Details' : 'View Job Details'}
+          </span>
+          {isExpanded ? (
+            <FaAngleUp className="text-gray-400 group-hover:text-primary-600 transition-colors" />
+          ) : (
+            <FaAngleDown className="text-gray-400 group-hover:text-primary-600 transition-colors" />
+          )}
+        </button>
+
+        {isExpanded && (
+          <div className="space-y-6 pt-4 border-t border-gray-100 animate-fadeIn">
+            {/* Requirements */}
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <span className="w-1 h-5 bg-primary-600 rounded"></span>
+                Requirements
+              </h4>
+              <ul className="space-y-2.5">
+                {position.requirements.map((req, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-gray-600 text-sm">
+                    <FaCheckCircle className="text-primary-500 mt-0.5 flex-shrink-0" />
+                    <span>{req}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Responsibilities */}
+            <div>
+              <h4 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                <span className="w-1 h-5 bg-secondary-600 rounded"></span>
+                Key Responsibilities
+              </h4>
+              <ul className="space-y-2.5">
+                {position.responsibilities.slice(0, 6).map((resp, idx) => (
+                  <li key={idx} className="flex items-start gap-3 text-gray-600 text-sm">
+                    <FaCheckCircle className="text-secondary-500 mt-0.5 flex-shrink-0" />
+                    <span>{resp}</span>
+                  </li>
+                ))}
+                {position.responsibilities.length > 6 && (
+                  <li className="text-gray-500 text-sm italic ml-6">
+                    + {position.responsibilities.length - 6} more responsibilities
+                  </li>
+                )}
+              </ul>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
 
 const Careers = () => {
   const benefits = [
     {
-      icon: <FaDollarSign className="text-3xl" />,
+      icon: <FaDollarSign />,
       title: 'Competitive Salary',
       description: 'Competitive compensation packages with regular reviews'
     },
     {
-      icon: <FaHeart className="text-3xl" />,
-      title: 'Health Benefits',
-      description: 'Comprehensive health, dental, and vision insurance'
-    },
-    {
-      icon: <FaCalendarAlt className="text-3xl" />,
+      icon: <FaCalendarAlt />,
       title: 'Work-Life Balance',
       description: 'Flexible scheduling and generous PTO'
     },
     {
-      icon: <FaGraduationCap className="text-3xl" />,
+      icon: <FaGraduationCap />,
       title: 'Professional Development',
       description: 'Continuing education and training opportunities'
     },
     {
-      icon: <FaAward className="text-3xl" />,
-      title: 'Retirement Plan',
-      description: '401(k) with employer matching'
-    },
-    {
-      icon: <FaHandshake className="text-3xl" />,
+      icon: <FaHandshake />,
       title: 'Supportive Culture',
       description: 'Collaborative team environment focused on wellness'
     }
@@ -49,71 +151,88 @@ const Careers = () => {
 
   const openPositions = [
     {
-      title: 'Licensed Mental Health Therapist',
+      title: 'Clinical Supervisor',
       type: 'Full-Time',
       location: 'Moorhead, MN',
+      schedule: null,
+      salary: null,
       requirements: [
-        'Licensed as LICSW, LPCC, or LP in Minnesota',
-        '2+ years of clinical experience preferred',
-        'Experience with adult mental health populations',
-        'Strong assessment and treatment planning skills'
+        'Licensed mental health professional (LPCC, LICSW, LMFT, or psychologist)',
+        'Experience with serious and persistent mental illness (SPMI)',
+        'Knowledge of ARMHS rules (MN Statute 256B.0623)',
+        'Supervisory experience preferred or required',
+        'Strong understanding of state and Medicaid requirements',
+        'Excellent clinical judgment and decision-making skills'
       ],
       responsibilities: [
-        'Provide individual and group therapy',
-        'Conduct comprehensive assessments',
-        'Develop and implement treatment plans',
-        'Collaborate with multidisciplinary team'
+        'Review and approve client assessments and treatment plans',
+        'Ensure services align with medical necessity and ARMHS standards',
+        'Monitor interventions for schizophrenia, bipolar disorder, and major depressive disorder',
+        'Supervise ARMHS practitioners/clinicians (weekly or biweekly)',
+        'Provide clinical direction, coaching, and performance feedback',
+        'Review and sign off on functional assessments, treatment plans, and progress notes',
+        'Ensure documentation meets state and Medicaid requirements',
+        'Develop and improve ARMHS programming and quality assurance processes',
+        'Coordinate care with psychiatrists, case managers, and other providers',
+        'Provide consultation during client crises and guide emergency protocols',
+        'Prepare for audits and maintain regulatory compliance',
+        'Support staff professional development and training'
       ]
     },
     {
-      title: 'ARMHS Practitioner',
+      title: 'Mental Health Practitioner',
       type: 'Full-Time / Part-Time',
-      location: 'Moorhead, MN & Metro Area',
+      location: 'Moorhead & Metro Area',
+      schedule: null,
+      salary: null,
       requirements: [
-        "Bachelor's degree in related field",
-        'Experience in mental health services',
+        "Bachelor's degree in psychology, social work, or related behavioral health field",
+        'Meet Minnesota Mental Health Practitioner qualifications',
+        'Experience working with adults with mental illness preferred',
         'Valid driver\'s license and reliable transportation',
-        'Ability to work flexible hours'
+        'Ability to work flexible hours including evenings and weekends',
+        'Strong interpersonal and communication skills',
+        'Ability to work independently and as part of a team'
       ],
       responsibilities: [
-        'Provide in-home and community-based services',
-        'Assist clients with skill development',
-        'Document client progress and outcomes',
-        'Coordinate with treatment team'
+        'Provide individual mental health services in home and community settings',
+        'Conduct functional assessments and develop individualized treatment plans',
+        'Implement evidence-based interventions and skill-building activities',
+        'Assist clients with symptom management and coping strategies',
+        'Support clients with daily living skills and community integration',
+        'Document services and maintain accurate, timely progress notes',
+        'Coordinate care with clinical supervisor and treatment team',
+        'Monitor client progress and adjust interventions as needed',
+        'Provide crisis intervention and safety planning when necessary',
+        'Participate in regular supervision and team meetings',
+        'Ensure compliance with ARMHS standards and ethical guidelines',
+        'Build therapeutic relationships focused on recovery and wellness'
       ]
     },
     {
-      title: 'Case Manager',
+      title: 'Administrative Assistant',
       type: 'Full-Time',
       location: 'Moorhead, MN',
+      schedule: '9 AM - 5 PM',
+      salary: '$19/hour',
       requirements: [
-        "Bachelor's degree in social work or related field",
-        'Experience in case management',
-        'Strong organizational skills',
-        'Knowledge of community resources'
+        'High school diploma or equivalent required',
+        'Proficient in Microsoft Office Suite (Word, Excel, Outlook)',
+        'Excellent written and verbal communication skills',
+        'Strong organizational and time management abilities',
+        'Professional phone etiquette and customer service skills',
+        'Ability to maintain confidentiality and handle sensitive information',
+        'Previous administrative or office experience preferred'
       ],
       responsibilities: [
-        'Coordinate client services and resources',
-        'Conduct home visits and assessments',
-        'Maintain accurate documentation',
-        'Advocate for client needs'
-      ]
-    },
-    {
-      title: 'Housing Stabilization Specialist',
-      type: 'Full-Time',
-      location: 'Metro Area',
-      requirements: [
-        'Experience in housing services or social work',
-        'Knowledge of housing resources and tenant rights',
-        'Strong communication skills',
-        'Bachelor\'s degree preferred'
-      ],
-      responsibilities: [
-        'Assist clients with housing search and applications',
-        'Provide landlord negotiation support',
-        'Develop housing sustainability plans',
-        'Connect clients with community resources'
+        'Answer and direct phone calls, emails, and correspondence',
+        'Schedule appointments and manage office calendar',
+        'Maintain client files and ensure accurate documentation',
+        'Greet clients and visitors in a warm, professional manner',
+        'Process insurance verification and billing support',
+        'Assist with data entry and record keeping',
+        'Support clinical staff with administrative tasks',
+        'Manage office supplies and maintain organized workspace'
       ]
     }
   ];
@@ -128,105 +247,123 @@ const Careers = () => {
   ];
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="gradient-bg text-white section-padding py-20">
-        <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-                Join Our Team
-              </h1>
-              <p className="text-xl md:text-2xl text-primary-100 mb-8">
-                Build a rewarding career making a real difference in mental health care. 
-                We're looking for compassionate professionals to join our growing team.
-              </p>
-              <a href="#openings" className="btn-primary bg-white text-primary-700 hover:bg-gray-100">
-                View Open Positions
-              </a>
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section - Cleaner, More Modern */}
+      <section className="relative bg-gradient-to-br from-primary-600 via-primary-700 to-secondary-700 text-white overflow-hidden">
+        <div className="absolute inset-0 bg-grid-white/[0.05] bg-[size:20px_20px]"></div>
+        <div className="container-custom relative py-20 lg:py-28">
+          <div className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full mb-6 text-sm font-medium">
+              <FaBriefcase />
+              <span>We're Hiring</span>
             </div>
-            <div className="hidden lg:block">
-              <div className="bg-white/20 backdrop-blur-lg rounded-3xl p-8 shadow-2xl">
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                      <FaUsers className="text-3xl text-primary-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold">Great Team</h3>
-                      <p className="text-primary-100">Collaborative culture</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                      <FaHeart className="text-3xl text-primary-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold">Make Impact</h3>
-                      <p className="text-primary-100">Change lives daily</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center space-x-4">
-                    <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center">
-                      <FaGraduationCap className="text-3xl text-primary-600" />
-                    </div>
-                    <div>
-                      <h3 className="text-xl font-bold">Grow Skills</h3>
-                      <p className="text-primary-100">Ongoing training</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+              Join Our Mission
+            </h1>
+            <p className="text-xl md:text-2xl text-primary-100 mb-8 leading-relaxed">
+              Help us transform lives through compassionate mental health care. We're looking for dedicated professionals to join our growing team.
+            </p>
+            <a 
+              href="#openings" 
+              className="inline-flex items-center gap-2 bg-white text-primary-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-50 transition-colors shadow-lg"
+            >
+              View Open Positions
+              <FaArrowRight />
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Open Positions - Clean Card Design */}
+      <section id="openings" className="py-16 lg:py-24">
+        <div className="container-custom">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Open Positions
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Explore our current opportunities and find the perfect role for you
+            </p>
+          </div>
+
+          <div className="max-w-4xl mx-auto space-y-6">
+            {openPositions.map((position, index) => (
+              <JobCard key={index} position={position} />
+            ))}
+          </div>
+
+          {/* General Application CTA */}
+          <div className="mt-12 text-center">
+            <div className="max-w-2xl mx-auto bg-gradient-to-br from-gray-50 to-white rounded-xl p-8 border border-gray-200">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
+                Don't see the right fit?
+              </h3>
+              <p className="text-gray-600 mb-6">
+                We're always looking for talented individuals. Send us your resume and we'll keep you in mind for future opportunities.
+              </p>
+              <Link 
+                to="/contact" 
+                className="inline-flex items-center gap-2 text-primary-600 font-semibold hover:text-primary-700 transition-colors group"
+              >
+                Submit Your Resume
+                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Why Join Us Section */}
-      <section className="section-padding bg-white">
+      {/* Why Join Us - Cleaner Grid */}
+      <section className="py-16 lg:py-24 bg-white">
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Work at Resilient Minds?
+              Why Resilient Minds?
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              More than just a job - it's a calling to make a difference
+              More than just a job—a meaningful career with purpose
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
             {whyJoinUs.map((reason, index) => (
-              <div key={index} className="flex items-start bg-primary-50 rounded-xl p-6">
-                <FaCheckCircle className="text-green-500 text-2xl mr-4 flex-shrink-0 mt-1" />
-                <span className="text-lg text-gray-700">{reason}</span>
+              <div 
+                key={index} 
+                className="flex items-start gap-3 bg-gradient-to-br from-gray-50 to-white rounded-lg p-6 border border-gray-100 hover:border-primary-200 transition-colors"
+              >
+                <FaCheckCircle className="text-green-500 text-xl flex-shrink-0 mt-0.5" />
+                <span className="text-gray-700 font-medium">{reason}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Benefits Section */}
-      <section className="section-padding bg-gray-50">
+      {/* Benefits - Modern Cards */}
+      <section className="py-16 lg:py-24 bg-gray-50">
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Benefits & Perks
             </h2>
             <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              We invest in our team members' wellbeing and professional growth
+              We invest in our team's wellbeing and growth
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
             {benefits.map((benefit, index) => (
-              <div key={index} className="card text-center group">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary-100 text-primary-600 rounded-xl mb-4 group-hover:bg-primary-600 group-hover:text-white transition-all">
+              <div 
+                key={index} 
+                className="bg-white rounded-lg p-6 border border-gray-100 hover:border-primary-200 hover:shadow-md transition-all group"
+              >
+                <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-600 text-white rounded-lg flex items-center justify-center text-xl mb-4 group-hover:scale-110 transition-transform">
                   {benefit.icon}
                 </div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-lg font-bold text-gray-900 mb-2">
                   {benefit.title}
                 </h3>
-                <p className="text-gray-600">
+                <p className="text-gray-600 text-sm">
                   {benefit.description}
                 </p>
               </div>
@@ -235,120 +372,45 @@ const Careers = () => {
         </div>
       </section>
 
-      {/* Open Positions Section */}
-      <section id="openings" className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Current Openings
-            </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-              Join our team and help transform lives through compassionate mental health care
-            </p>
-          </div>
-
-          <div className="max-w-5xl mx-auto space-y-6">
-            {openPositions.map((position, index) => (
-              <div key={index} className="card hover:shadow-2xl">
-                <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between mb-6">
-                  <div className="mb-4 lg:mb-0">
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                      {position.title}
-                    </h3>
-                    <div className="flex flex-wrap gap-3">
-                      <span className="inline-flex items-center px-3 py-1 bg-primary-100 text-primary-700 rounded-full text-sm font-medium">
-                        <FaBriefcase className="mr-2" />
-                        {position.type}
-                      </span>
-                      <span className="inline-flex items-center px-3 py-1 bg-secondary-100 text-secondary-700 rounded-full text-sm font-medium">
-                        <FaMapMarkerAlt className="mr-2" />
-                        {position.location}
-                      </span>
-                    </div>
-                  </div>
-                  <Link 
-                    to="/contact" 
-                    className="btn-primary whitespace-nowrap"
-                  >
-                    Apply Now
-                  </Link>
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-3">Requirements:</h4>
-                    <ul className="space-y-2">
-                      {position.requirements.map((req, idx) => (
-                        <li key={idx} className="flex items-start text-gray-600">
-                          <span className="text-primary-600 mr-2 mt-1">•</span>
-                          {req}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-3">Responsibilities:</h4>
-                    <ul className="space-y-2">
-                      {position.responsibilities.map((resp, idx) => (
-                        <li key={idx} className="flex items-start text-gray-600">
-                          <span className="text-secondary-600 mr-2 mt-1">•</span>
-                          {resp}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-12">
-            <p className="text-gray-600 mb-6">
-              Don't see a position that fits? We're always looking for talented individuals.
-            </p>
-            <Link to="/contact" className="inline-flex items-center text-primary-600 font-semibold hover:text-primary-700 transition group">
-              Send us your resume
-              <FaArrowRight className="ml-2 group-hover:translate-x-2 transition-transform" />
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Application Process Section */}
-      <section className="section-padding bg-primary-700 text-white">
+      {/* Application Process - Simplified */}
+      <section className="py-16 lg:py-24 bg-gradient-to-br from-primary-600 to-secondary-700 text-white">
         <div className="container-custom">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Application Process
+              Simple Application Process
             </h2>
             <p className="text-xl text-primary-100">
-              Simple steps to join our team
+              Four easy steps to join our team
             </p>
           </div>
 
           <div className="grid md:grid-cols-4 gap-8 max-w-5xl mx-auto">
             {[
-              { step: '1', title: 'Apply', desc: 'Submit your application and resume' },
+              { step: '1', title: 'Apply', desc: 'Submit your application' },
               { step: '2', title: 'Review', desc: 'We review your qualifications' },
               { step: '3', title: 'Interview', desc: 'Meet with our team' },
-              { step: '4', title: 'Join Us', desc: 'Welcome to the team!' }
+              { step: '4', title: 'Join', desc: 'Welcome aboard!' }
             ].map((item, index) => (
               <div key={index} className="text-center relative">
-                <div className="w-16 h-16 bg-white text-primary-700 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">
+                <div className="w-16 h-16 bg-white text-primary-700 rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4 shadow-lg">
                   {item.step}
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
-                <p className="text-primary-100">{item.desc}</p>
+                <p className="text-primary-100 text-sm">{item.desc}</p>
                 {index < 3 && (
-                  <div className="hidden md:block absolute top-8 left-full w-full h-0.5 bg-white/30"></div>
+                  <div className="hidden md:block absolute top-8 left-[calc(50%+2rem)] w-[calc(100%-4rem)] h-0.5 bg-white/20"></div>
                 )}
               </div>
             ))}
           </div>
 
           <div className="text-center mt-12">
-            <Link to="/contact" className="btn-primary bg-white text-primary-700 hover:bg-gray-100">
+            <Link 
+              to="/contact" 
+              className="inline-flex items-center gap-2 bg-white text-primary-700 px-8 py-4 rounded-lg font-bold hover:bg-gray-50 transition-colors shadow-lg"
+            >
               Start Your Application
+              <FaArrowRight />
             </Link>
           </div>
         </div>
@@ -357,11 +419,4 @@ const Careers = () => {
   );
 };
 
-const FaMapMarkerAlt = ({ className }) => (
-  <svg className={className} fill="currentColor" viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg">
-    <path d="M172.268 501.67C26.97 291.031 0 269.413 0 192 0 85.961 85.961 0 192 0s192 85.961 192 192c0 77.413-26.97 99.031-172.268 309.67-9.535 13.774-29.93 13.773-39.464 0zM192 272c44.183 0 80-35.817 80-80s-35.817-80-80-80-80 35.817-80 80 35.817 80 80 80z"/>
-  </svg>
-);
-
 export default Careers;
-

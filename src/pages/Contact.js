@@ -1,109 +1,48 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { 
   FaPhone, 
   FaEnvelope, 
   FaMapMarkerAlt,
   FaClock,
-  FaCalendarAlt,
-  FaExclamationTriangle,
-  FaTimes,
   FaCheckCircle,
   FaComments,
   FaHandshake,
-  FaUserMd,
-  FaArrowRight,
-  FaPaperPlane,
-  FaQuestionCircle
+  FaQuestionCircle,
+  FaExclamationTriangle
 } from 'react-icons/fa';
 import { ImageWithLoader } from '../components/LoadingSpinner';
-import api from '../services/api';
 import wellLitHouse from '../images/well_lit_house.png';
 import peopleSeatedTogether from '../images/people_seated_together.png';
-import twoPeopleWalking from '../images/two_people_walking.png';
 
 const Contact = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    preferred_contact: 'email',
-    message: '',
-    is_urgent: false
-  });
-
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [error, setError] = useState(null);
-
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === 'checkbox' ? checked : value
-    }));
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setError(null);
-
-    try {
-      const result = await api.submitContactForm(formData);
-      
-      if (result.success) {
-        setIsSubmitted(true);
-        
-        // Reset form and close modal after 3 seconds
-        setTimeout(() => {
-          setIsSubmitted(false);
-          setShowModal(false);
-          setFormData({
-            name: '',
-            email: '',
-            phone: '',
-            service: '',
-            preferred_contact: 'email',
-            message: '',
-            is_urgent: false
-          });
-        }, 3000);
-      } else {
-        setError(result.error || 'Failed to submit form. Please try again.');
-      }
-    } catch (err) {
-      setError('Network error. Please check your connection and try again.');
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
-
   const contactInfo = [
     {
       icon: <FaPhone className="text-3xl" />,
       title: 'Phone',
       details: ['(612) 443-9032', 'Mon-Fri: 8:00 AM - 6:00 PM'],
-      link: 'tel:612-443-9032'
+      link: 'tel:612-443-9032',
+      color: 'from-blue-500 to-blue-600'
     },
     {
       icon: <FaEnvelope className="text-3xl" />,
       title: 'Email',
       details: ['resilientmindsolutionllc@gmail.com', 'We respond within 24 hours'],
-      link: 'mailto:resilientmindsolutionllc@gmail.com'
+      link: 'mailto:resilientmindsolutionllc@gmail.com',
+      color: 'from-purple-500 to-purple-600'
     },
     {
       icon: <FaMapMarkerAlt className="text-3xl" />,
       title: 'Main Office',
       details: ['1132 28th Ave S', 'Moorhead, MN 56560'],
-      link: 'https://maps.google.com'
+      link: 'https://maps.google.com/?q=1132+28th+Ave+S,+Moorhead,+MN+56560',
+      color: 'from-green-500 to-green-600'
     },
     {
       icon: <FaClock className="text-3xl" />,
       title: 'Office Hours',
       details: ['Monday - Friday: 8:00 AM - 6:00 PM', 'Saturday: 9:00 AM - 2:00 PM'],
-      link: null
+      link: null,
+      color: 'from-orange-500 to-orange-600'
     }
   ];
 
@@ -153,19 +92,19 @@ const Contact = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
-            <button 
-              onClick={() => setShowModal(true)}
-              className="group bg-white text-primary-700 px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-50 transition shadow-2xl inline-flex items-center justify-center gap-3"
-            >
-              <FaCalendarAlt className="text-2xl group-hover:scale-110 transition-transform" />
-              Request Appointment
-            </button>
             <a 
               href="tel:612-443-9032" 
+              className="group bg-white text-primary-700 px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-50 transition shadow-2xl inline-flex items-center justify-center gap-3"
+            >
+              <FaPhone className="text-2xl group-hover:scale-110 transition-transform" />
+              Call Us Now
+            </a>
+            <a 
+              href="mailto:resilientmindsolutionllc@gmail.com" 
               className="bg-primary-700 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-600 transition border-2 border-white/30 inline-flex items-center justify-center gap-3"
             >
-              <FaPhone className="text-2xl" />
-              Call Now
+              <FaEnvelope className="text-2xl" />
+              Email Us
             </a>
           </div>
         </div>
@@ -225,7 +164,7 @@ const Contact = () => {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {contactInfo.map((info, index) => (
               <div key={index} className="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all p-8 text-center border-2 border-gray-100 hover:border-primary-300">
-                <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-primary-500 to-secondary-600 text-white rounded-2xl mb-6 group-hover:scale-110 transition-transform shadow-lg">
+                <div className={`inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br ${info.color} text-white rounded-2xl mb-6 group-hover:scale-110 transition-transform shadow-lg`}>
                   {info.icon}
                 </div>
                 <h3 className="text-2xl font-bold text-gray-900 mb-4">
@@ -257,37 +196,32 @@ const Contact = () => {
             ))}
           </div>
 
-          {/* CTA Section for Form */}
-          <div className="relative rounded-3xl overflow-hidden shadow-2xl">
-            {/* Background Image */}
-            <div className="absolute inset-0">
-              <ImageWithLoader
-                src={twoPeopleWalking} 
-                alt="Take the first step" 
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-secondary-900/95 to-primary-900/90"></div>
-            </div>
-
-            {/* Content */}
-            <div className="relative z-10 p-12 lg:p-16 text-white text-center">
-              <div className="max-w-3xl mx-auto">
-                <FaUserMd className="text-6xl mx-auto mb-6" />
-                <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                  Ready to Get Started?
-                </h2>
-                <p className="text-xl text-primary-100 mb-8">
-                  Fill out our appointment request form and we'll contact you within 24 hours 
-                  to schedule your first visit. Your journey to wellness starts here.
-                </p>
-                <button
-                  onClick={() => setShowModal(true)}
-                  className="group bg-white text-primary-700 px-12 py-5 rounded-xl font-bold text-xl hover:bg-primary-50 transition shadow-2xl inline-flex items-center gap-4"
+          {/* Direct Contact CTA */}
+          <div className="bg-gradient-to-r from-primary-600 to-secondary-600 rounded-3xl shadow-2xl p-12 text-center text-white">
+            <div className="max-w-3xl mx-auto">
+              <FaHandshake className="text-6xl mx-auto mb-6" />
+              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+                Ready to Get Started?
+              </h2>
+              <p className="text-xl text-primary-100 mb-8">
+                Contact us directly to learn more about our services or schedule an appointment. 
+                We're here to answer any questions you may have.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <a 
+                  href="tel:612-443-9032" 
+                  className="bg-white text-primary-700 px-12 py-5 rounded-xl font-bold text-xl hover:bg-primary-50 transition shadow-2xl inline-flex items-center justify-center gap-4"
                 >
-                  <FaCalendarAlt className="text-2xl" />
-                  Request Appointment
-                  <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
-                </button>
+                  <FaPhone className="text-2xl" />
+                  Call (612) 443-9032
+                </a>
+                <a 
+                  href="mailto:resilientmindsolutionllc@gmail.com" 
+                  className="bg-primary-700 text-white px-12 py-5 rounded-xl font-bold text-xl hover:bg-primary-800 transition border-2 border-white inline-flex items-center justify-center gap-4"
+                >
+                  <FaEnvelope className="text-2xl" />
+                  Send Email
+                </a>
               </div>
             </div>
           </div>
@@ -452,221 +386,8 @@ const Contact = () => {
           </div>
         </div>
       </section>
-
-      {/* Contact Form Modal */}
-      {showModal && (
-        <div className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 p-4 overflow-y-auto">
-          <div className="bg-white rounded-3xl shadow-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto my-8">
-            {/* Modal Header */}
-            <div className="sticky top-0 bg-gradient-to-r from-primary-600 to-secondary-600 text-white p-8 rounded-t-3xl">
-              <div className="flex justify-between items-start">
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold mb-2">
-                    Request an Appointment
-                  </h2>
-                  <p className="text-primary-100 text-lg">
-                    Fill out the form below and we'll get back to you within 24 hours
-                  </p>
-                </div>
-                <button
-                  onClick={() => setShowModal(false)}
-                  className="text-white hover:text-gray-200 transition p-2 hover:bg-white/10 rounded-lg"
-                >
-                  <FaTimes className="text-3xl" />
-                </button>
-              </div>
-            </div>
-
-            {/* Modal Body */}
-            <div className="p-8">
-              {error && (
-                <div className="bg-red-50 border-2 border-red-500 rounded-xl p-4 mb-6 flex items-start gap-3">
-                  <FaExclamationTriangle className="text-red-500 text-xl mt-1 flex-shrink-0" />
-                  <p className="text-red-700">{error}</p>
-                </div>
-              )}
-
-              {isSubmitted ? (
-                <div className="text-center py-12">
-                  <div className="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <FaCheckCircle className="text-green-500 text-5xl" />
-                  </div>
-                  <h3 className="text-3xl font-bold text-gray-900 mb-4">Thank You!</h3>
-                  <p className="text-xl text-gray-600 mb-2">
-                    Your appointment request has been received.
-                  </p>
-                  <p className="text-gray-500">
-                    We'll contact you within 24 hours to schedule your appointment.
-                  </p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Name */}
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-bold text-gray-700 mb-2">
-                      Full Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      className="w-full px-5 py-4 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition text-lg"
-                      placeholder="John Doe"
-                    />
-                  </div>
-
-                  {/* Email and Phone */}
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-bold text-gray-700 mb-2">
-                        Email Address *
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-5 py-4 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition text-lg"
-                        placeholder="john@example.com"
-                      />
-                    </div>
-
-                    <div>
-                      <label htmlFor="phone" className="block text-sm font-bold text-gray-700 mb-2">
-                        Phone Number *
-                      </label>
-                      <input
-                        type="tel"
-                        id="phone"
-                        name="phone"
-                        value={formData.phone}
-                        onChange={handleChange}
-                        required
-                        className="w-full px-5 py-4 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition text-lg"
-                        placeholder="(612) 443-9032"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Service */}
-                  <div>
-                    <label htmlFor="service" className="block text-sm font-bold text-gray-700 mb-2">
-                      Service Interest
-                    </label>
-                    <select
-                      id="service"
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      className="w-full px-5 py-4 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition text-lg"
-                    >
-                      <option value="">Select a service...</option>
-                      <option value="armhs">Adult Rehabilitative Mental Health (ARMHS)</option>
-                      <option value="housing">Housing Stabilization Services</option>
-                      <option value="therapy">Individual/Group Therapy</option>
-                      <option value="crisis">Crisis Intervention</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  {/* Preferred Contact */}
-                  <div>
-                    <label className="block text-sm font-bold text-gray-700 mb-3">
-                      Preferred Contact Method
-                    </label>
-                    <div className="flex gap-6">
-                      <label className="flex items-center cursor-pointer">
-                        <input
-                          type="radio"
-                          name="preferred_contact"
-                          value="email"
-                          checked={formData.preferred_contact === 'email'}
-                          onChange={handleChange}
-                          className="w-5 h-5 text-primary-600 mr-3"
-                        />
-                        <span className="text-gray-700 font-medium">Email</span>
-                      </label>
-                      <label className="flex items-center cursor-pointer">
-                        <input
-                          type="radio"
-                          name="preferred_contact"
-                          value="phone"
-                          checked={formData.preferred_contact === 'phone'}
-                          onChange={handleChange}
-                          className="w-5 h-5 text-primary-600 mr-3"
-                        />
-                        <span className="text-gray-700 font-medium">Phone</span>
-                      </label>
-                    </div>
-                  </div>
-
-                  {/* Message */}
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-bold text-gray-700 mb-2">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleChange}
-                      rows="5"
-                      className="w-full px-5 py-4 border-2 border-gray-300 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-primary-500 outline-none transition resize-none text-lg"
-                      placeholder="Tell us briefly about what brings you here today..."
-                    ></textarea>
-                  </div>
-
-                  {/* Urgent */}
-                  <div className="flex items-start bg-red-50 border-2 border-red-200 rounded-xl p-4">
-                    <input
-                      type="checkbox"
-                      id="is_urgent"
-                      name="is_urgent"
-                      checked={formData.is_urgent}
-                      onChange={handleChange}
-                      className="w-5 h-5 text-red-600 mt-1 mr-3"
-                    />
-                    <label htmlFor="is_urgent" className="text-gray-700 font-medium">
-                      This is an urgent matter (We'll prioritize your request)
-                    </label>
-                  </div>
-
-                  {/* Submit Button */}
-                  <button 
-                    type="submit" 
-                    className="w-full bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-8 py-5 rounded-xl font-bold text-xl hover:from-primary-700 hover:to-secondary-700 transition shadow-xl flex items-center justify-center gap-3"
-                    disabled={isSubmitting}
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-6 h-6 border-3 border-white border-t-transparent rounded-full animate-spin"></div>
-                        Submitting...
-                      </>
-                    ) : (
-                      <>
-                        <FaPaperPlane />
-                        Submit Request
-                      </>
-                    )}
-                  </button>
-
-                  <p className="text-sm text-gray-500 text-center">
-                    By submitting this form, you consent to us contacting you regarding your request.
-                  </p>
-                </form>
-              )}
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
 
 export default Contact;
-

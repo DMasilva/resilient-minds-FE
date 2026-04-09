@@ -30,21 +30,21 @@ const Services = () => {
     {
       icon: <FaBrain className="text-5xl" />,
       title: 'Adult Rehabilitative Mental Health Services (ARMHS)',
-      shortDesc: 'Comprehensive mental health rehabilitation for adults',
-      description: 'ARMHS provides individualized mental health rehabilitation services to help adults develop and enhance psychiatric stability, social competencies, personal and emotional adjustment, and independent living and community skills.',
+      shortDesc: 'Minnesota Medical Assistance-funded rehabilitation services',
+      description: 'ARMHS are Minnesota-based, Medical Assistance-funded mental health services designed to help adults (18+) with serious functional impairments live independently. Our certified staff provide individualized interventions to restore, maintain, or improve functional skills, enabling you to live independently and avoid hospitalization. Services are provided in your home, community, or clinic settings.',
       features: [
-        'Individual skill development',
-        'Symptom management strategies',
-        'Community integration support',
-        'Independent living skills training',
-        'Crisis prevention planning',
-        'Medication management education'
+        'Basic Living & Social Skills: Budgeting, cooking, shopping, and interpersonal communication',
+        'Medication Education: Monitoring and teaching about medication management',
+        'Community Intervention: Navigating resources and accessing services',
+        'Functional Assessment & Treatment Planning: Certified staff create personalized care plans',
+        'Individualized interventions for independent living',
+        'Support to maintain or improve psychiatric stability'
       ],
       eligibility: [
-        'Adults 18 years and older',
-        'Diagnosed with a mental health condition',
-        'Difficulty with daily living activities',
-        'Need support to maintain community living'
+        'Age 18 years or older',
+        'Have Medical Assistance (MA) coverage',
+        'Diagnostic assessment verifying functional impairments in at least 3 areas',
+        'Living with mental illness requiring rehabilitative support'
       ]
     },
     {
