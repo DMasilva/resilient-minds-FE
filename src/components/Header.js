@@ -23,7 +23,7 @@ const Header = () => {
     { name: 'Home', path: '/' },
     { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
-    // { name: 'Careers', path: '/careers' }, // Temporarily hidden
+    { name: 'Careers', path: '/careers' },
     { name: 'Resources', path: '/resources' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -38,9 +38,9 @@ const Header = () => {
               <FaPhone className="mr-2" />
               (612) 443-9032
             </a>
-            <a href="mailto:resilientmindsolutionllc@gmail.com" className="flex items-center hover:text-primary-200 transition">
-              <FaEnvelope className="mr-2" />
-              resilientmindsolutionllc@gmail.com
+            <a href="mailto:resilientmindsolutionllc@gmail.com" className="flex items-center hover:text-primary-200 transition text-sm xl:text-base">
+              <FaEnvelope className="mr-2 flex-shrink-0" />
+              <span className="truncate">resilientmindsolutionllc@gmail.com</span>
             </a>
           </div>
           <div className="flex items-center space-x-4">

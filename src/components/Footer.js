@@ -148,9 +148,9 @@ const Footer = () => {
                   (612) 443-9032
                 </a>
               </li>
-              <li className="flex items-center">
-                <FaEnvelope className="mr-3 text-primary-400 flex-shrink-0" />
-                <a href="mailto:resilientmindsolutionllc@gmail.com" className="hover:text-primary-400 transition">
+              <li className="flex items-start">
+                <FaEnvelope className="mr-3 text-primary-400 flex-shrink-0 mt-1" />
+                <a href="mailto:resilientmindsolutionllc@gmail.com" className="hover:text-primary-400 transition break-all sm:break-normal text-sm sm:text-base">
                   resilientmindsolutionllc@gmail.com
                 </a>
               </li>
@@ -166,14 +166,18 @@ const Footer = () => {
 
       {/* Crisis Hotline Banner */}
       <div className="bg-accent-600 py-4">
-        <div className="container-custom text-center text-white">
-          <p className="font-semibold">
+        <div className="container-custom text-center text-white px-4">
+          <p className="font-semibold text-sm md:text-base">
             <FaPhone className="inline mr-2" />
-            24/7 Crisis Hotline: 
-            <a href="tel:988" className="ml-2 underline hover:text-accent-200 transition">988</a>
-            <span className="mx-2">|</span>
-            National Suicide Prevention Lifeline: 
-            <a href="tel:1-800-273-8255" className="ml-2 underline hover:text-accent-200 transition">1-800-273-8255</a>
+            <span className="block sm:inline mb-2 sm:mb-0">
+              24/7 Crisis Hotline: 
+              <a href="tel:988" className="ml-2 underline hover:text-accent-200 transition font-bold">988</a>
+            </span>
+            <span className="hidden sm:inline mx-2">|</span>
+            <span className="block sm:inline">
+              Suicide Prevention: 
+              <a href="tel:1-800-273-8255" className="ml-2 underline hover:text-accent-200 transition whitespace-nowrap">1-800-273-8255</a>
+            </span>
           </p>
         </div>
       </div>

@@ -6,7 +6,11 @@
 
 @layer base {
   body {
-    @apply font-sans text-gray-900 antialiased;
+    @apply font-sans text-gray-900 antialiased overflow-x-hidden;
+  }
+  
+  html {
+    @apply overflow-x-hidden;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -32,7 +36,7 @@
   }
   
   .container-custom {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
   
   .card {
@@ -69,4 +73,56 @@ html {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #0369a1;
+}
+
+/* Loading animations */
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2s infinite;
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Responsive images and media */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent horizontal overflow on all elements */
+* {
+  word-wrap: break-word;
+}
+
+/* Responsive table improvements */
+@media (max-width: 768px) {
+  table {
+    font-size: 0.875rem;
+  }
+  
+  th, td {
+    padding: 0.5rem !important;
+  }
 }

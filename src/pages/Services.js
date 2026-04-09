@@ -19,6 +19,7 @@ import {
   FaClipboardList,
   FaLightbulb
 } from 'react-icons/fa';
+import { ImageWithLoader } from '../components/LoadingSpinner';
 import wellLitHouse from '../images/well_lit_house.png';
 import twoPeopleWalking from '../images/two_people_walking.png';
 import plantSprouting from '../images/plant_sprouting.png';
@@ -29,21 +30,21 @@ const Services = () => {
     {
       icon: <FaBrain className="text-5xl" />,
       title: 'Adult Rehabilitative Mental Health Services (ARMHS)',
-      shortDesc: 'Comprehensive mental health rehabilitation for adults',
-      description: 'ARMHS provides individualized mental health rehabilitation services to help adults develop and enhance psychiatric stability, social competencies, personal and emotional adjustment, and independent living and community skills.',
+      shortDesc: 'Minnesota Medical Assistance-funded rehabilitation services',
+      description: 'ARMHS are Minnesota-based, Medical Assistance-funded mental health services designed to help adults (18+) with serious functional impairments live independently. Our certified staff provide individualized interventions to restore, maintain, or improve functional skills, enabling you to live independently and avoid hospitalization. Services are provided in your home, community, or clinic settings.',
       features: [
-        'Individual skill development',
-        'Symptom management strategies',
-        'Community integration support',
-        'Independent living skills training',
-        'Crisis prevention planning',
-        'Medication management education'
+        'Basic Living & Social Skills: Budgeting, cooking, shopping, and interpersonal communication',
+        'Medication Education: Monitoring and teaching about medication management',
+        'Community Intervention: Navigating resources and accessing services',
+        'Functional Assessment & Treatment Planning: Certified staff create personalized care plans',
+        'Individualized interventions for independent living',
+        'Support to maintain or improve psychiatric stability'
       ],
       eligibility: [
-        'Adults 18 years and older',
-        'Diagnosed with a mental health condition',
-        'Difficulty with daily living activities',
-        'Need support to maintain community living'
+        'Age 18 years or older',
+        'Have Medical Assistance (MA) coverage',
+        'Diagnostic assessment verifying functional impairments in at least 3 areas',
+        'Living with mental illness requiring rehabilitative support'
       ]
     },
     {
@@ -148,7 +149,7 @@ const Services = () => {
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img 
+          <ImageWithLoader
             src={peopleSeatedTogether} 
             alt="Mental health services" 
             className="w-full h-full object-cover"
@@ -225,28 +226,28 @@ const Services = () => {
                   <div className={`order-2 ${index % 2 === 1 ? 'lg:order-1' : 'lg:order-2'}`}>
                     <div className="relative rounded-2xl overflow-hidden shadow-2xl group">
                       {index === 0 && (
-                        <img 
+                        <ImageWithLoader
                           src={twoPeopleWalking} 
                           alt="ARMHS - Support and guidance" 
                           className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       )}
                       {index === 1 && (
-                        <img 
+                        <ImageWithLoader
                           src={wellLitHouse} 
                           alt="Housing Stabilization - Safe and stable home" 
                           className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       )}
                       {index === 2 && (
-                        <img 
+                        <ImageWithLoader
                           src={plantSprouting} 
                           alt="Therapy - Growth and healing" 
                           className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
                         />
                       )}
                       {index === 3 && (
-                        <img 
+                        <ImageWithLoader
                           src={peopleSeatedTogether} 
                           alt="Crisis Intervention - Immediate support" 
                           className="w-full h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
@@ -441,7 +442,7 @@ const Services = () => {
       <section className="relative section-padding overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0">
-          <img 
+          <ImageWithLoader
             src={twoPeopleWalking} 
             alt="Accessible mental health care" 
             className="w-full h-full object-cover"
@@ -548,7 +549,7 @@ const Services = () => {
 
               {/* Image */}
               <div className="relative h-full min-h-[400px] lg:min-h-0 hidden lg:block">
-                <img 
+                <ImageWithLoader
                   src={peopleSeatedTogether} 
                   alt="Start your journey" 
                   className="absolute inset-0 w-full h-full object-cover"
