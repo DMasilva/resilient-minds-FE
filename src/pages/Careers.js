@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
   FaBriefcase, 
-  FaHeart, 
-  FaUsers,
   FaGraduationCap,
   FaDollarSign,
   FaCalendarAlt,
