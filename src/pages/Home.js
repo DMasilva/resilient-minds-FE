@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  FaHeart, 
   FaHome, 
   FaUsers, 
   FaBrain,
@@ -16,12 +15,10 @@ import {
   FaAward,
   FaHandsHelping,
   FaLightbulb,
-  FaUserMd,
   FaMapMarkerAlt
 } from 'react-icons/fa';
 import { ImageWithLoader } from '../components/LoadingSpinner';
 import twoPeopleWalking from '../images/two_people_walking.png';
-import plantSprouting from '../images/plant_sprouting.png';
 import peopleSeatedTogether from '../images/people_seated_together.png';
 import wellLitHouse from '../images/well_lit_house.png';
 import erikaYoney from '../images/erika.png';
