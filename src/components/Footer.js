@@ -11,6 +11,13 @@ import {
   FaHeart
 } from 'react-icons/fa';
 import logoIcon from '../images/icononly.png';
+import {
+  CONTACT_EMAIL,
+  CONTACT_EMAIL_HREF,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_HREF,
+  CONTACT_PRIMARY_NAME,
+} from '../constants/contact';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -133,7 +140,8 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold text-white mb-4">Contact Us</h4>
+            <h4 className="text-lg font-semibold text-white mb-2">Contact Us</h4>
+            <p className="text-gray-400 text-sm mb-3">{CONTACT_PRIMARY_NAME}</p>
             <ul className="space-y-3">
               <li className="flex items-start">
                 <FaMapMarkerAlt className="mt-1 mr-3 text-primary-400 flex-shrink-0" />
@@ -144,14 +152,14 @@ const Footer = () => {
               </li>
               <li className="flex items-center">
                 <FaPhone className="mr-3 text-primary-400 flex-shrink-0" />
-                <a href="tel:612-443-9032" className="hover:text-primary-400 transition">
-                  (612) 443-9032
+                <a href={CONTACT_PHONE_HREF} className="hover:text-primary-400 transition">
+                  {CONTACT_PHONE_DISPLAY}
                 </a>
               </li>
               <li className="flex items-start">
                 <FaEnvelope className="mr-3 text-primary-400 flex-shrink-0 mt-1" />
-                <a href="mailto:resilientmindsolutionllc@gmail.com" className="hover:text-primary-400 transition break-all sm:break-normal text-sm sm:text-base">
-                  resilientmindsolutionllc@gmail.com
+                <a href={CONTACT_EMAIL_HREF} className="hover:text-primary-400 transition break-all sm:break-normal text-sm sm:text-base">
+                  {CONTACT_EMAIL}
                 </a>
               </li>
             </ul>

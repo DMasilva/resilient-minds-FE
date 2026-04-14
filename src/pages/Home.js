@@ -18,6 +18,7 @@ import {
   FaMapMarkerAlt
 } from 'react-icons/fa';
 import { ImageWithLoader } from '../components/LoadingSpinner';
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF } from '../constants/contact';
 import twoPeopleWalking from '../images/two_people_walking.png';
 import peopleSeatedTogether from '../images/people_seated_together.png';
 import wellLitHouse from '../images/well_lit_house.png';
@@ -114,11 +115,11 @@ const Home = () => {
                   <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
                 </Link>
                 <a 
-                  href="tel:612-443-9032" 
+                  href={CONTACT_PHONE_HREF} 
                   className="bg-primary-700 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-primary-600 transition border-2 border-white/30 flex items-center justify-center gap-2"
                 >
                   <FaPhone />
-                  (612) 443-9032
+                  {CONTACT_PHONE_DISPLAY}
                 </a>
               </div>
 
@@ -561,11 +562,11 @@ const Home = () => {
                     <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
                   </Link>
                   <a 
-                    href="tel:612-443-9032" 
+                    href={CONTACT_PHONE_HREF} 
                     className="bg-accent-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-accent-800 transition border-2 border-white/30 flex items-center justify-center gap-2"
                   >
                     <FaPhone />
-                    (612) 443-9032
+                    {CONTACT_PHONE_DISPLAY}
                   </a>
                 </div>
               </div>

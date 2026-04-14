@@ -20,6 +20,7 @@ import {
   FaLightbulb
 } from 'react-icons/fa';
 import { ImageWithLoader } from '../components/LoadingSpinner';
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF } from '../constants/contact';
 import wellLitHouse from '../images/well_lit_house.png';
 import twoPeopleWalking from '../images/two_people_walking.png';
 import plantSprouting from '../images/plant_sprouting.png';
@@ -426,11 +427,11 @@ const Services = () => {
                   Request an Appointment
                 </Link>
                 <a 
-                  href="tel:612-443-9032" 
+                  href={CONTACT_PHONE_HREF} 
                   className="bg-white text-primary-700 px-10 py-4 rounded-xl font-bold border-2 border-primary-600 hover:bg-primary-50 transition inline-flex items-center justify-center gap-3"
                 >
                   <FaPhone />
-                  (612) 443-9032
+                  {CONTACT_PHONE_DISPLAY}
                 </a>
               </div>
             </div>
@@ -538,11 +539,11 @@ const Services = () => {
                     <FaArrowRight className="group-hover:translate-x-2 transition-transform" />
                   </Link>
                   <a 
-                    href="tel:612-443-9032" 
+                    href={CONTACT_PHONE_HREF} 
                     className="bg-primary-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-primary-800 transition border-2 border-white/30 inline-flex items-center justify-center gap-3"
                   >
                     <FaPhone />
-                    (612) 443-9032
+                    {CONTACT_PHONE_DISPLAY}
                   </a>
                 </div>
               </div>

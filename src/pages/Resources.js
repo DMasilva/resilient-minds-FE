@@ -19,6 +19,7 @@ import {
   FaShieldAlt
 } from 'react-icons/fa';
 import { ImageWithLoader } from '../components/LoadingSpinner';
+import { CONTACT_PHONE_DISPLAY, CONTACT_PHONE_HREF } from '../constants/contact';
 import peopleSeatedTogether from '../images/people_seated_together.png';
 import wellLitHouse from '../images/well_lit_house.png';
 import twoPeopleWalking from '../images/two_people_walking.png';
@@ -652,11 +653,11 @@ const Resources = () => {
                 Schedule an Appointment
               </a>
               <a 
-                href="tel:612-443-9032" 
+                href={CONTACT_PHONE_HREF} 
                 className="bg-primary-700 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-600 transition border-2 border-white/30 inline-flex items-center justify-center gap-3"
               >
                 <FaPhone className="text-2xl" />
-                (612) 443-9032
+                {CONTACT_PHONE_DISPLAY}
               </a>
             </div>
 

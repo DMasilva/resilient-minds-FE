@@ -11,6 +11,13 @@ import {
   FaExclamationTriangle
 } from 'react-icons/fa';
 import { ImageWithLoader } from '../components/LoadingSpinner';
+import {
+  CONTACT_EMAIL,
+  CONTACT_EMAIL_HREF,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_HREF,
+  CONTACT_PRIMARY_NAME,
+} from '../constants/contact';
 import wellLitHouse from '../images/well_lit_house.png';
 import peopleSeatedTogether from '../images/people_seated_together.png';
 
@@ -19,15 +26,15 @@ const Contact = () => {
     {
       icon: <FaPhone className="text-3xl" />,
       title: 'Phone',
-      details: ['(612) 443-9032', 'Mon-Fri: 8:00 AM - 6:00 PM'],
-      link: 'tel:612-443-9032',
+      details: [CONTACT_PHONE_DISPLAY, 'Mon-Fri: 8:00 AM - 6:00 PM'],
+      link: CONTACT_PHONE_HREF,
       color: 'from-blue-500 to-blue-600'
     },
     {
       icon: <FaEnvelope className="text-3xl" />,
       title: 'Email',
-      details: ['resilientmindsolutionllc@gmail.com', 'We respond within 24 hours'],
-      link: 'mailto:resilientmindsolutionllc@gmail.com',
+      details: [CONTACT_EMAIL, 'We respond within 24 hours'],
+      link: CONTACT_EMAIL_HREF,
       color: 'from-purple-500 to-purple-600'
     },
     {
@@ -50,13 +57,13 @@ const Contact = () => {
     {
       name: 'Moorhead Office (Main)',
       address: '1132 28th Ave S, Moorhead, MN 56560',
-      phone: '(612) 443-9032',
+      phone: CONTACT_PHONE_DISPLAY,
       hours: 'Mon-Fri: 8AM-6PM, Sat: 9AM-2PM'
     },
     {
       name: 'Twin Cities Metro Office',
       address: 'Coming Soon - Minneapolis/St. Paul Area',
-      phone: '(612) 443-9032',
+      phone: CONTACT_PHONE_DISPLAY,
       hours: 'Virtual appointments available now'
     }
   ];
@@ -86,21 +93,21 @@ const Contact = () => {
             Get in Touch
           </h1>
           <p className="text-xl md:text-2xl max-w-4xl mx-auto text-primary-100 leading-relaxed mb-12">
-            We're here to help. Reach out to us and take the first step 
+            We're here to help. Reach out to {CONTACT_PRIMARY_NAME} by phone or email and take the first step 
             toward better mental health and wellness.
           </p>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
             <a 
-              href="tel:612-443-9032" 
+              href={CONTACT_PHONE_HREF} 
               className="group bg-white text-primary-700 px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-50 transition shadow-2xl inline-flex items-center justify-center gap-3"
             >
               <FaPhone className="text-2xl group-hover:scale-110 transition-transform" />
               Call Us Now
             </a>
             <a 
-              href="mailto:resilientmindsolutionllc@gmail.com" 
+              href={CONTACT_EMAIL_HREF} 
               className="bg-primary-700 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-primary-600 transition border-2 border-white/30 inline-flex items-center justify-center gap-3"
             >
               <FaEnvelope className="text-2xl" />
@@ -209,14 +216,14 @@ const Contact = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <a 
-                  href="tel:612-443-9032" 
+                  href={CONTACT_PHONE_HREF} 
                   className="bg-white text-primary-700 px-12 py-5 rounded-xl font-bold text-xl hover:bg-primary-50 transition shadow-2xl inline-flex items-center justify-center gap-4"
                 >
                   <FaPhone className="text-2xl" />
-                  Call (612) 443-9032
+                  Call {CONTACT_PHONE_DISPLAY}
                 </a>
                 <a 
-                  href="mailto:resilientmindsolutionllc@gmail.com" 
+                  href={CONTACT_EMAIL_HREF} 
                   className="bg-primary-700 text-white px-12 py-5 rounded-xl font-bold text-xl hover:bg-primary-800 transition border-2 border-white inline-flex items-center justify-center gap-4"
                 >
                   <FaEnvelope className="text-2xl" />
@@ -286,7 +293,7 @@ const Contact = () => {
                       </div>
                       <div className="flex-1">
                         <p className="font-semibold text-lg text-gray-900">Phone</p>
-                        <a href={`tel:${location.phone}`} className="text-primary-600 hover:text-primary-700 font-medium">
+                        <a href={CONTACT_PHONE_HREF} className="text-primary-600 hover:text-primary-700 font-medium">
                           {location.phone}
                         </a>
                       </div>
@@ -368,14 +375,14 @@ const Contact = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a 
-                  href="tel:612-443-9032" 
+                  href={CONTACT_PHONE_HREF} 
                   className="bg-white text-primary-700 px-8 py-4 rounded-xl font-bold hover:bg-primary-50 transition inline-flex items-center justify-center gap-2"
                 >
                   <FaPhone />
                   Call Us
                 </a>
                 <a 
-                  href="mailto:resilientmindsolutionllc@gmail.com" 
+                  href={CONTACT_EMAIL_HREF} 
                   className="bg-primary-700 text-white px-8 py-4 rounded-xl font-bold hover:bg-primary-800 transition border-2 border-white/30 inline-flex items-center justify-center gap-2"
                 >
                   <FaEnvelope />

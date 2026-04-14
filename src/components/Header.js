@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { FaBars, FaTimes, FaPhone, FaEnvelope } from 'react-icons/fa';
+import {
+  CONTACT_EMAIL,
+  CONTACT_EMAIL_HREF,
+  CONTACT_PHONE_DISPLAY,
+  CONTACT_PHONE_HREF,
+} from '../constants/contact';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -34,13 +40,13 @@ const Header = () => {
       <div className="bg-primary-700 text-white py-2 hidden md:block">
         <div className="container-custom flex justify-between items-center text-sm">
           <div className="flex items-center space-x-6">
-            <a href="tel:612-443-9032" className="flex items-center hover:text-primary-200 transition">
+            <a href={CONTACT_PHONE_HREF} className="flex items-center hover:text-primary-200 transition">
               <FaPhone className="mr-2" />
-              (612) 443-9032
+              {CONTACT_PHONE_DISPLAY}
             </a>
-            <a href="mailto:resilientmindsolutionllc@gmail.com" className="flex items-center hover:text-primary-200 transition text-sm xl:text-base">
+            <a href={CONTACT_EMAIL_HREF} className="flex items-center hover:text-primary-200 transition text-sm xl:text-base">
               <FaEnvelope className="mr-2 flex-shrink-0" />
-              <span className="truncate">resilientmindsolutionllc@gmail.com</span>
+              <span className="truncate">{CONTACT_EMAIL}</span>
             </a>
           </div>
           <div className="flex items-center space-x-4">
@@ -123,9 +129,9 @@ const Header = () => {
               <Link to="/contact" className="block btn-primary text-center">
                 Get Help Now
               </Link>
-              <a href="tel:612-443-9032" className="flex items-center justify-center py-2 text-primary-600 font-medium">
+              <a href={CONTACT_PHONE_HREF} className="flex items-center justify-center py-2 text-primary-600 font-medium">
                 <FaPhone className="mr-2" />
-                (612) 443-9032
+                {CONTACT_PHONE_DISPLAY}
               </a>
             </div>
           </div>
